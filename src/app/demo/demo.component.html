@@ -1,0 +1,135 @@
+<div class="section">
+    <div class="container tim-container">
+        <div class="row">
+            <div class="col-md-8 ml-auto mr-auto">
+                <h4 class="title text-center">
+                    Data client A
+                </h4>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th class="text-center">{{ tableData1.headerRow[0] }}</th>
+                                <th>{{ tableData1.headerRow[1] }}</th>
+                                <th>{{ tableData1.headerRow[2] }}</th>
+                                <th class="text-right">{{ tableData1.headerRow[4] }}</th>
+                                <th class="text-right">{{ tableData1.headerRow[5] }}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let row of tableData1.dataRows">
+                                <td class="text-center">{{row[0]}}</td>
+                                <td>{{row[1]}}</td>
+                                <td>{{row[2]}}</td>
+                                <td class="text-right">&euro; {{row[4]}}</td>
+                                <td class="td-actions text-right">
+                                    <button type="button" ngbTooltip="View Profile"
+                                        class="btn btn-info btn-link btn-sm">
+                                        <i class="fa fa-user"></i>
+                                    </button>
+                                    <button type="button" ngbTooltip="Edit Profile"
+                                        class="btn btn-success btn-link btn-sm">
+                                        <i class="fa fa-edit"></i>
+                                    </button>
+                                    <button type="button" ngbTooltip="Remove" class="btn btn-danger btn-link btn-sm">
+                                        <i class="fa fa-times"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="section section-gray">
+    <div class="container tim-container">
+        <div class="row">
+            <div class="col-md-8 ml-auto mr-auto">
+                <h4 class="title text-center">
+                    Data client B
+                </h4>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th class="text-center">{{ tableData1.headerRow[0] }}</th>
+                                <th>{{ tableData1.headerRow[1] }}</th>
+                                <th>{{ tableData1.headerRow[2] }}</th>
+                                <th class="text-right">{{ tableData1.headerRow[4] }}</th>
+                                <th class="text-right">{{ tableData1.headerRow[5] }}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let row of tableData1.dataRows">
+                                <td class="text-center">{{row[0]}}</td>
+                                <td>{{row[1]}}</td>
+                                <td>{{row[2]}}</td>
+                                <td class="text-right">&euro; {{row[4]}}</td>
+                                <td class="td-actions text-right">
+                                    <button type="button" ngbTooltip="View Profile"
+                                        class="btn btn-info btn-link btn-sm">
+                                        <i class="fa fa-user"></i>
+                                    </button>
+                                    <button type="button" ngbTooltip="Edit Profile"
+                                        class="btn btn-success btn-link btn-sm">
+                                        <i class="fa fa-edit"></i>
+                                    </button>
+                                    <button type="button" ngbTooltip="Remove" class="btn btn-danger btn-link btn-sm">
+                                        <i class="fa fa-times"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="section">
+    <div class="container tim-container">
+        <div class="row">
+            <div class="col-md-8 ml-auto mr-auto">
+                <h4 class="title text-center">
+                    Data client C
+                </h4>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th class="text-center">{{ tableData1.headerRow[0] }}</th>
+                                <th>{{ tableData1.headerRow[1] }}</th>
+                                <th>{{ tableData1.headerRow[2] }}</th>
+                                <th class="text-right">{{ tableData1.headerRow[4] }}</th>
+                                <th class="text-right">{{ tableData1.headerRow[5] }}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let row of tableData1.dataRows">
+                                <td class="text-center">{{row[0]}}</td>
+                                <td>{{row[1]}}</td>
+                                <td>{{row[2]}}</td>
+                                <td class="text-right">&euro; {{row[4]}}</td>
+                                <td class="td-actions text-right">
+                                    <button type="button" ngbTooltip="View Profile"
+                                        class="btn btn-info btn-link btn-sm">
+                                        <i class="fa fa-user"></i>
+                                    </button>
+                                    <button type="button" ngbTooltip="Edit Profile"
+                                        class="btn btn-success btn-link btn-sm">
+                                        <i class="fa fa-edit"></i>
+                                    </button>
+                                    <button type="button" ngbTooltip="Remove" class="btn btn-danger btn-link btn-sm">
+                                        <i class="fa fa-times"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

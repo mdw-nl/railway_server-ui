@@ -1,0 +1,52 @@
+<div class="section">
+    <div class="container tim-container">
+        <div class="row">
+            <div class="col-md-4 ml-auto mr-auto">
+                <h4 class="title text-center">
+                    Computations (select)
+                </h4>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th class="text-center">{{ tableData1.headerRow[0] }}</th>
+                                <th>{{ tableData1.headerRow[1] }}</th>
+                                <th>{{ tableData1.headerRow[2] }}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let row of tableData1.dataRows">
+                                <td class="text-center">{{row[0]}}</td>
+                                <td>{{row[1]}}</td>
+                                <td>{{row[2]}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="col-md-8 ml-auto mr-auto">
+                <h4 class="title text-center">
+                    Computation Results
+                </h4>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th class="text-center">{{ tableData1.headerRow[0] }}</th>
+                                <th>{{ tableData1.headerRow[1] }}</th>
+                                <th>{{ tableData1.headerRow[2] }}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let row of tableData1.dataRows">
+                                <td class="text-center">{{row[0]}}</td>
+                                <td>{{row[1]}}</td>
+                                <td>{{row[2]}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
