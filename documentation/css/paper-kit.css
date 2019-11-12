@@ -7631,7 +7631,7 @@ video {
   .pswp--svg .pswp__button,
   .pswp--svg .pswp__button--arrow--left:before,
   .pswp--svg .pswp__button--arrow--right:before {
-    background-image: url(../../assets/img/photo_swipe/default-skin.svg);
+    background-image: none;
   }
 
   .pswp--svg .pswp__button--arrow--left,
@@ -10738,7 +10738,7 @@ body {
   margin-top: 15px;
 }
 .blog-page .blog-header-image {
-  background-image: url("../img/farid-askerov.jpg");
+  background-image: none;
 }
 .blog-page .navbar input {
   background-color: rgba(255, 255, 255, 0.17);

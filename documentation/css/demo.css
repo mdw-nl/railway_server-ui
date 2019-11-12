@@ -71,7 +71,6 @@
 
 }
 .navigation-example{
-    background-image: url('../img/ilya-yakover.jpg');
     background-position: center center;
     background-size: cover;
     background-attachment: fixed;
@@ -231,9 +230,7 @@
 .demo-height .motto{
     padding-top: 20% !important;
 }
-.demo-header-image{
-    background-image: url('../img/city.jpg');
-}
+
 .demo-header .motto{
     color: #FFFFFF;
     padding-top: 15%;
