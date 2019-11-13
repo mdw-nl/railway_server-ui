@@ -8,14 +8,16 @@ import { UserComponent } from './user/user.component';
 import { AdminComponent } from './admin/admin.component';
 import { DemoComponent } from './demo/demo.component';
 import { ResultsComponent } from './results/results.component';
+import { LoginComponent } from './login/login.component';
 
-const routes: Routes =[
-    { path: 'home',                 component: HomeComponent },
-    { path: 'user',                 component: UserComponent },
-    { path: 'admin',                component: AdminComponent },
-    { path: 'demo',                 component: DemoComponent },
-    { path: 'results',              component: ResultsComponent },
-    { path: '', redirectTo: 'home', pathMatch: 'full' }
+const routes: Routes = [
+    { path: 'about',    component: HomeComponent },
+    { path: 'user',     component: UserComponent },
+    { path: 'admin',    component: AdminComponent },
+    { path: 'demo',     component: DemoComponent },
+    { path: 'results',  component: ResultsComponent },
+    { path: 'login',    component: LoginComponent},
+    { path: '', redirectTo: 'login', pathMatch: 'full' }
 ];
 
 @NgModule({

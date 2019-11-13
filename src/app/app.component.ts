@@ -22,7 +22,7 @@ export class AppComponent implements OnInit {
     url: string;
     @ViewChild(NavbarComponent, {static: false}) navbar: NavbarComponent;
 
-    constructor( private renderer : Renderer, private router: Router, private element : ElementRef, public location: Location) {}
+    constructor( private renderer : Renderer, public router: Router, private element : ElementRef, public location: Location) {}
 
     @HostListener('window:scroll', ['$event'])
     hasScrolled() {

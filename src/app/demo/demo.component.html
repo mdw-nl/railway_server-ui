@@ -1,3 +1,138 @@
+<div class="section section-blog">
+    <div class="container">
+        <div class="title h1">
+            Client Status
+        </div>
+        <div class="row">
+            <!-- <div *ngFor="let client of mock.clientArray"> -->
+                <div class="col-md-4" *ngFor="let client of mock.clientArray">
+                        <div class="card card-blog">
+                            <div class="card-body">
+                                <h6 class="card-category text-success">{{client.status}}</h6>
+                                <h5 class="card-title">
+                                    <a href="javascript:void(0)">{{client.id}}</a>
+                                </h5>
+                                <div class="card-description">
+                                    "cool info"
+                                    <ul>
+                                        <li> ip-address: {{client.ip}}</li>
+                                    </ul>
+                                </div>
+                                <hr>
+                                <div class="card-footer">
+                                    <div class="author">
+                                        <a href="javascript:void(0)">
+                                            <img src="{{client.photo}}" alt="..."
+                                                class="avatar img-raised">
+                                            <span>{{client.user}}</span>
+                                        </a>
+                                    </div>
+                                    <div class="stats">
+                                        <i class="fa fa-clock-o" aria-hidden="true"></i> {{client.user}}
+                                    </div>
+                                </div>
+                            </div>
+                        </div> 
+                    <!-- </div>     -->
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card card-blog">
+                    <div class="card-body">
+                        <h6 class="card-category text-success">online</h6>
+                        <h5 class="card-title">
+                            <a href="javascript:void(0)">Client A</a>
+                        </h5>
+                        <p class="card-description">
+                            "cool info"
+                        </p>
+                        <hr>
+                        <div class="card-footer">
+                            <div class="author">
+                                <a href="javascript:void(0)">
+                                    <img src="./assets/img/faces/ayo-ogunseinde-2.jpg" alt="..."
+                                        class="avatar img-raised">
+                                    <span>Mike John</span>
+                                </a>
+                            </div>
+                            <div class="stats">
+                                <i class="fa fa-clock-o" aria-hidden="true"></i> 3 seconds ago
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card card-blog">
+                    <div class="card-body">
+                        <h6 class="card-category text-success">online</h6>
+                        <h5 class="card-title">
+                            <a href="javascript:void(0)">Client B</a>
+                        </h5>
+                        <p class="card-description">
+                            "cool info"
+                        </p>
+                        <hr>
+                        <div class="card-footer">
+                            <div class="author">
+                                <a href="javascript:void(0)">
+                                    <img src="./assets/img/faces/kaci-baum-2.jpg" alt="..." class="avatar img-raised">
+                                    <span>Nickie Kelly</span>
+                                </a>
+                            </div>
+                            <div class="stats">
+                                <i class="fa fa-clock-o" aria-hidden="true"></i> 10 seconds ago
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card card-blog">
+                    <div class="card-body">
+                        <h6 class="card-category text-success">online</h6>
+                        <h5 class="card-title">
+                            <a href="javascript:void(0)">Client C</a>
+                        </h5>
+                        <p class="card-description">
+                            "cool info"
+                        </p>
+                        <hr>
+                        <div class="card-footer">
+                            <div class="author">
+                                <a href="javascript:void(0)">
+                                    <img src="./assets/img/faces/erik-lucatero-2.jpg" alt="..."
+                                        class="avatar img-raised">
+                                    <span>Mike John</span>
+                                </a>
+                            </div>
+                            <div class="stats">
+                                <i class="fa fa-clock-o" aria-hidden="true"></i> 53 minutes ago
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div><!-- section -->
+<div class="section section-blog">
+    <div class="container">
+        <div class="title h1">
+            Select Data
+        </div>
+    </div>
+</div>
+<div class="section section-blog">
+    <div class="container">
+        <div class="title h1">
+            Select Analysis
+        </div>
+    </div>
+</div>
 <div class="section">
     <div class="container tim-container">
         <div class="row">

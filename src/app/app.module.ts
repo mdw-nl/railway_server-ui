@@ -13,6 +13,7 @@ import { AdminComponent } from './admin/admin.component';
 import { UserComponent } from './user/user.component';
 import { DemoComponent } from './demo/demo.component';
 import { ResultsComponent } from './results/results.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
     declarations: [
@@ -22,7 +23,8 @@ import { ResultsComponent } from './results/results.component';
         AdminComponent,
         UserComponent,
         DemoComponent,
-        ResultsComponent
+        ResultsComponent,
+        LoginComponent
     ],
     imports: [
         BrowserAnimationsModule,

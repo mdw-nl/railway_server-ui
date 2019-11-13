@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { BackendMockService } from 'app/backend-mock.service';
 
 declare interface TableData {
   headerRow: string[];
@@ -12,8 +13,8 @@ declare interface TableData {
 })
 export class DemoComponent implements OnInit {
   public tableData1: TableData;
-
-  constructor() { }
+  constructor( public mock: BackendMockService) {
+  }
 
   ngOnInit() {
     this.tableData1 = {

@@ -30,6 +30,7 @@
     "bootstrap": "4.3.1",
     "core-js": "3.1.4",
     "font-awesome": "4.7.0",
+    "human-readable-ids": "^1.0.4",
     "jquery": "3.4.1",
     "json-server": "^0.15.1",
     "jw-bootstrap-switch-ng2": "2.0.5",
