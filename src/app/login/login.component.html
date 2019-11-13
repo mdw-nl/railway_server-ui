@@ -8,11 +8,13 @@
                         <h3 class="card-title text-bold" style="color: #ffffff">Welcome</h3>
                         <form class="register-form">
                             <label>Username</label>
-                            <input type="username" class="form-control no-border" placeholder="Username">
+                            <input [ngModelOptions]="{standalone: true}" [(ngModel)]="username" type="text" class="form-control no-border" placeholder="Username">
 
                             <label>Password</label>
-                            <input type="password" class="form-control no-border" placeholder="Password">
-                            <a routerLink="/demo" class="btn btn-neutral btn-block btn-round">Login</a>
+                            <input [ngModelOptions]="{standalone: true}" [(ngModel)]="password" type="text" class="form-control no-border" placeholder="Password">
+                            <a (click)="login(username, password)" class="btn btn-neutral btn-block btn-round" style="color: #66615B !important;">Login</a>
+                            <br>
+                            <div *ngIf="loginError === true" class="text text-danger text-center"> Incorrect username/password</div>
                         </form>
                     </div>
                 </div>
