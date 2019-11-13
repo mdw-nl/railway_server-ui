@@ -32,7 +32,7 @@ export class BackendMockService {
     clientData1.ip = '192.186.0.100'
     clientData1.email = 'tim.lustberg@medicaldataworks.nl'
     clientData1.user = 'Tim'
-    clientData1.photo = '../../assets/img/tim1.svg'
+    clientData1.photo = './assets/img/tim1.svg'
     clientData1.institute = 'Lustberg Clinics'
 
     let clientData2: ClientData  = new ClientData();
@@ -43,7 +43,7 @@ export class BackendMockService {
     clientData2.ip = '192.186.0.101'
     clientData2.email = 'tim.hendriks@medicaldataworks.nl'
     clientData2.user = 'Tim'
-    clientData2.photo = '../../assets/img/tim2.svg'
+    clientData2.photo = './assets/img/tim2.svg'
     clientData2.institute = 'Hendriks Clinics'
 
     let clientData3: ClientData  = new ClientData();
@@ -54,7 +54,7 @@ export class BackendMockService {
     clientData3.ip = '192.186.0.101'
     clientData3.email = 'johan.vansoest@medicaldataworks.nl'
     clientData3.user = 'Johan'
-    clientData3.photo = '../../assets/img/johan.svg'
+    clientData3.photo = './assets/img/johan.svg'
     clientData3.institute = 'VanSoest Clinics'
 
     this.clientArray.push(clientData1);
