@@ -16,8 +16,11 @@
                                     Client Info
                                     <ul>
                                         <li> ip-address: {{client.ip}}</li>
-                                        <li> mapped data: {{client.mappedVariables}}</li>
-                                        <li> </li>
+                                        <li> mapped data:
+                                            <ul>
+                                                <li *ngFor="let variable of client.mappedVariables">{{variable}}</li>
+                                            </ul>
+                                        </li>
                                     </ul>
                                 </div>
                                 <hr>
