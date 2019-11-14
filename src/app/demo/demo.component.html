@@ -1,44 +1,131 @@
 <div class="section section-blog">
     <div class="container">
-        <div class="title h1">
+        <!-- <div class="title h1">
             Client Status
-        </div>
+        </div> -->
         <div class="row">
             <!-- <div *ngFor="let client of mock.clientArray"> -->
-                <div class="col-md-4" *ngFor="let client of mock.clientArray">
-                        <div class="card card-blog">
-                            <div class="card-body">
-                                <h6 class="card-category text-success">{{client.status}}</h6>
-                                <h5 class="card-title">
-                                    <a href="javascript:void(0)">{{client.id}}</a>
-                                </h5>
-                                <div class="card-description" style="min-height: 10rem;">
-                                    Client Info
+            <div class="col-md-4" *ngFor="let client of mock.clientArray">
+                <div class="card card-blog">
+                    <div class="card-body">
+                        <h6 class="card-category text-success text-right">{{client.status}}</h6>
+                        <h5 class="card-title">
+                            <a href="javascript:void(0)">{{client.id}}</a>
+                        </h5>
+                        <div class="card-description" style="min-height: 9rem;">
+                            Client Info
+                            <div class="col-4"></div>
+                            <ul>
+                                <li> ip-address: {{client.ip}}</li>
+                                <li> mapped data:
                                     <ul>
-                                        <li> ip-address: {{client.ip}}</li>
-                                        <li> mapped data:
-                                            <ul>
-                                                <li *ngFor="let variable of client.mappedVariables">{{variable}}</li>
-                                            </ul>
-                                        </li>
+                                        <li *ngFor="let variable of client.mappedVariables">{{variable}}</li>
                                     </ul>
-                                </div>
-                                <hr>
-                                <div class="card-footer">
-                                    <div class="author">
-                                        <a href="javascript:void(0)">
-                                            <img src="{{client.photo}}" alt="..."
-                                                class="avatar img-raised">
-                                            <span>{{client.user}}</span>
-                                        </a>
-                                    </div>
-                                    <div class="stats">
-                                        <i class="fa fa-clock-o" aria-hidden="true"></i> {{client.lastOnline}} ago
-                                    </div>
-                                </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <hr>
+                        <div class="card-footer">
+                            <div class="author">
+                                <a href="javascript:void(0)">
+                                    <img src="{{client.photo}}" alt="..." class="avatar img-raised">
+                                    <span>{{client.user}}</span>
+                                </a>
                             </div>
-                        </div> 
-                    <!-- </div>     -->
+                            <div class="stats">
+                                <i class="fa fa-clock-o" aria-hidden="true"></i> {{client.state}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card card-plain">
+                    Select Input
+
+                    <div class="form-check-radio">
+                        <label class="form-check-label">
+                            <input class="form-check-input" type="radio" name="inputRad" id="inputRad1" value="age"
+                            (change)="onInputChange($event)" [(ngModel)]="selectedInput" checked>
+                            Age
+                            <span class="form-check-sign"></span>
+                        </label>
+                    </div>
+                    <div class="form-check-radio">
+                        <label class="form-check-label">
+                            <input class="form-check-input" type="radio" name="inputRad" id="inputRad2" value="gender"
+                            (change)="onInputChange($event)" [(ngModel)]="selectedInput">
+                            Gender
+                            <span class="form-check-sign"></span>
+                        </label>
+                    </div>
+                    <div class="form-check-radio">
+                        <label class="form-check-label">
+                            <input class="form-check-input" type="radio" name="inputRad" id="inputRad3" value="treatment"
+                            (change)="onInputChange($event)" [(ngModel)]="selectedInput">
+                            Treatment
+                            <span class="form-check-sign"></span>
+                        </label>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card card-blog">
+                    <div class="card-body">
+                        <h6 class="card-category text-success text-right">Online</h6>
+                        <h5 class="card-title">
+                            <a href="javascript:void(0)">Server</a>
+                        </h5>
+                        <div class="card-description text-center">
+                            <button (click)="run()" class="btn btn-move-left btn-round mr-1"><i class="nc-icon nc-app"></i> Run</button>
+                            <br><br><div>Result: {{computationResult}}</div>
+                        </div>                
+                        <div class="card-footer">
+                            <div class="author">
+                                <a href="javascript:void(0)">
+                                    <img src="./assets/img/Logo_zondertekst.png" alt="..." class="avatar img-raised">
+                                    <span>Admin</span>
+                                </a>
+                            </div>
+                            <div class="stats">
+                                <i class="fa fa-clock-o" aria-hidden="true"></i> {{serverStatus}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card card-plain">
+                        Select Computation
+
+                        <div class="form-check-radio">
+                            <label class="form-check-label">
+                                <input class="form-check-input" type="radio" name="calcRad" id="calcRad1" value="mean"
+                                (change)="onInputChange($event)" [(ngModel)]="selectedAnalysis" checked>
+                                Mean
+                                <span class="form-check-sign"></span>
+                            </label>
+                        </div>
+                        <div class="form-check-radio">
+                            <label class="form-check-label">
+                                <input class="form-check-input" type="radio" name="calcRad" id="calcRad2" value="distribution"
+                                (change)="onInputChange($event)" [(ngModel)]="selectedAnalysis" >
+                                Distribution
+                                <span class="form-check-sign"></span>
+                            </label>
+                        </div>
+                        <div class="form-check-radio">
+                            <label class="form-check-label">
+                                <input class="form-check-input" type="radio" name="calcRad" id="calcRad3" value="linear-regression"
+                                (change)="onInputChange($event)" [(ngModel)]="selectedAnalysis" >
+                                Linear regression
+                                <span class="form-check-sign"></span>
+                            </label>
+                        </div>
+                </div>
             </div>
         </div>
     </div>
