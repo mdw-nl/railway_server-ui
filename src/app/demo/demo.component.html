@@ -7,30 +7,68 @@
                     <div class="col-12">
                         <div class="card card-blog">
                             <div class="card-body">
-                                <h5 class="card-title"> Select Dataset </h5>
+                                <div class="row">
+                                    <div class="col-10">
+                                        <h5 class="card-title"> Select Dataset </h5>
+                                    </div>
+                                    <!-- info button for demo -->
+                                    <div class="col-2">
+                                        <div class="btn btn-just-icon text-info"
+                                            style="background-color: white;  border: 0;">
+                                            <i (click)="open(Register, '')" class="fa fa-info-circle btn-hover"></i>
+                                        </div>
+                                        <ng-template #Register let-c="close" let-d="dismiss">
+                                            <div class="modal-header modal-register no-border-header text-center">
+                                                <button type="button" class="close"
+                                                    (click)="d('Cross click')">&times;</button>
+                                                <h6 class="text-muted">Info</h6>
+                                                <h3 class="modal-title">Setting up your analysis</h3>
+                                            </div>
+                                            <div class="modal-body">
+                                                <p>Add stuff here</p>
+                                            </div>
+                                            <div class="modal-footer no-border-footer">
+                                                <p>
+                                                    <button type="button" class="btn btn-info btn-round"> More info
+                                                    </button>
+                                                </p>
+                                            </div>
+                                        </ng-template>
+                                        <!-- end info button -->
+                                    </div>
+                                </div>
                                 <div class="form-check-radio">
                                     <label class="form-check-label">
-                                        <input class="form-check-input" type="radio" name="inputRad" id="inputRad1"
-                                            value="age" (change)="onInputChange($event)" [(ngModel)]="selectedInput"
+                                        <input class="form-check-input" type="radio" name="dataRad" id="dataRad1"
+                                            value="all" (change)="onInputChange($event)" [(ngModel)]="selectedDataset"
                                             checked>
-                                        Age
+                                        All
                                         <span class="form-check-sign"></span>
                                     </label>
                                 </div>
-                                <div class="form-check-radio">
+                                <div class="form-check-radio disabled">
                                     <label class="form-check-label">
-                                        <input class="form-check-input" type="radio" name="inputRad" id="inputRad2"
-                                            value="gender" (change)="onInputChange($event)" [(ngModel)]="selectedInput">
-                                        Gender
+                                        <input class="form-check-input" type="radio" name="dataRad" id="dataRad2"
+                                            value="oncology" (change)="onInputChange($event)" [(ngModel)]="selectedDataset">
+                                        Oncology
                                         <span class="form-check-sign"></span>
                                     </label>
                                 </div>
-                                <div class="form-check-radio">
+                                <div class="form-check-radio disabled">
                                     <label class="form-check-label">
-                                        <input class="form-check-input" type="radio" name="inputRad" id="inputRad3"
-                                            value="treatment" (change)="onInputChange($event)"
-                                            [(ngModel)]="selectedInput">
-                                        Treatment
+                                        <input class="form-check-input" type="radio" name="dataRad" id="dataRad3"
+                                            value="cardiology" (change)="onInputChange($event)"
+                                            [(ngModel)]="selectedDataset">
+                                        Cardiology
+                                        <span class="form-check-sign"></span>
+                                    </label>
+                                </div>
+                                <div class="form-check-radio disabled">
+                                    <label class="form-check-label">
+                                        <input class="form-check-input" type="radio" name="dataRad" id="dataRad4"
+                                            value="neurology" (change)="onInputChange($event)"
+                                            [(ngModel)]="selectedDataset">
+                                        Neurology
                                         <span class="form-check-sign"></span>
                                     </label>
                                 </div>
@@ -75,7 +113,7 @@
                                         <span class="form-check-sign"></span>
                                     </label>
                                 </div>
-                                <div class="form-check-radio">
+                                <div class="form-check-radio disabled">
                                     <label class="form-check-label">
                                         <input class="form-check-input" type="radio" name="calcRad" id="calcRad2"
                                             value="distribution" (change)="onInputChange($event)"
@@ -84,7 +122,7 @@
                                         <span class="form-check-sign"></span>
                                     </label>
                                 </div>
-                                <div class="form-check-radio">
+                                <div class="form-check-radio disabled">
                                     <label class="form-check-label">
                                         <input class="form-check-input" type="radio" name="calcRad" id="calcRad3"
                                             value="linear-regression" (change)="onInputChange($event)"
@@ -97,8 +135,12 @@
                                 <hr>
                                 <br>
                                 <div class="text-center">
-                                        <button (click)="run()" class="btn btn-move-left btn-round mr-1"><i class="nc-icon nc-app"></i>
-                                            Run</button>
+                                    <button *ngIf="mock.processingDone === false" (click)="mock.startFakeRun()" class="btn btn-move-left btn-round mr-1"><i
+                                            class="nc-icon nc-app"></i>
+                                        Run</button>
+
+                                        <button *ngIf="mock.processingDone === true" (click)="goToResults()" class="btn btn-round mr-1">
+                                        Show results</button>
                                 </div>
                             </div>
                         </div>
@@ -112,7 +154,8 @@
                             <div class="card-body">
                                 <h6 class="card-category text-success text-right">Online</h6>
                                 <h5 class="card-title"> Server </h5>
-                                <div class="card-description text-center" style="min-height: 9rem;">
+                                <div class="card-description text-center" style="min-height: 13rem;">
+                                    
                                 </div>
                                 <hr>
                                 <div class="card-footer">
@@ -124,48 +167,92 @@
                                         </a>
                                     </div>
                                     <div class="stats" style="font-size: 14px;">
-                                        {{serverStatus}}
-                                        <div *ngIf="serverStatus !== IDLE" class='uil-reload-css reload-small'>
+                                        {{mock.serverStatus}}
+                                        <div *ngIf="mock.serverStatus !== mock.IDLE" class='uil-reload-css reload-small'>
                                             <div></div>
                                         </div>
-                                        <i *ngIf="serverStatus === IDLE" class="fa fa-clock-o" aria-hidden="true"></i>
+                                        <i *ngIf="mock.serverStatus === mock.IDLE" class="fa fa-clock-o" aria-hidden="true"></i>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-6" *ngFor="let client of mock.clientArray">
+                    <div class="col-md-6">
                         <div class="card card-blog">
                             <div class="card-body">
-                                <h6 class="card-category text-success text-right">{{client.status}}</h6>
+                                <h6 class="card-category text-success text-right">{{mock.clientArray[0].status}}</h6>
                                 <h5 class="card-title">
-                                    <a href="javascript:void(0)">Client - {{client.id}}</a>
+                                    <a>Client - {{mock.clientArray[0].id}}</a>
                                 </h5>
-                                <div class="card-description" style="min-height: 9rem;">
-                                    Client Info
-                                    <div class="col-4"></div>
-                                    <ul>
-                                        <li> ip-address: {{client.ip}}</li>
-                                        <li> mapped data:
-                                            <ul>
-                                                <li *ngFor="let variable of client.mappedVariables">{{variable}}
-                                                </li>
-                                            </ul>
-                                        </li>
-                                    </ul>
+                                <div class="card-description" style="min-height:13rem;">
+                                    <canvas id="chart1" class="ct-chart ct-perfect-fourth" width="228" height="150"></canvas>
                                 </div>
                                 <hr>
                                 <div class="card-footer">
                                     <div class="author">
-                                        <img src="{{client.photo}}" alt="..." class="avatar img-raised">
-                                        <span>{{client.user}}</span>
+                                        <img src="{{mock.clientArray[0].photo}}" alt="..." class="avatar img-raised">
+                                        <span>{{mock.clientArray[0].user}}</span>
                                     </div>
                                     <div class="stats" style="font-size: 14px;">
-                                        {{client.state}}
-                                        <div *ngIf="client.state !== IDLE" class='uil-reload-css reload-small'>
+                                        {{mock.clientArray[0].state}}
+                                        <div *ngIf="mock.clientArray[0].state !== mock.IDLE" class='uil-reload-css reload-small'>
                                             <div></div>
                                         </div>
-                                        <i *ngIf="client.state === IDLE" class="fa fa-clock-o" aria-hidden="true"></i>
+                                        <i *ngIf="mock.clientArray[0].state === mock.IDLE" class="fa fa-clock-o" aria-hidden="true"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card card-blog">
+                            <div class="card-body">
+                                <h6 class="card-category text-success text-right">{{mock.clientArray[1].status}}</h6>
+                                <h5 class="card-title">
+                                    <a>Client - {{mock.clientArray[1].id}}</a>
+                                </h5>
+                                <div class="card-description" style="min-height: 13rem;">
+                                    <canvas id="chart2" class="ct-chart ct-perfect-fourth" width="228" height="150"></canvas>
+                                </div>
+                                <hr>
+                                <div class="card-footer">
+                                    <div class="author">
+                                        <img src="{{mock.clientArray[1].photo}}" alt="..." class="avatar img-raised">
+                                        <span>{{mock.clientArray[1].user}}</span>
+                                    </div>
+                                    <div class="stats" style="font-size: 14px;">
+                                        {{mock.clientArray[1].state}}
+                                        <div *ngIf="mock.clientArray[1].state !== mock.IDLE" class='uil-reload-css reload-small'>
+                                            <div></div>
+                                        </div>
+                                        <i *ngIf="mock.clientArray[1].state === mock.IDLE" class="fa fa-clock-o" aria-hidden="true"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card card-blog">
+                            <div class="card-body">
+                                <h6 class="card-category text-success text-right">{{mock.clientArray[2].status}}</h6>
+                                <h5 class="card-title">
+                                    <a>Client - {{mock.clientArray[2].id}}</a>
+                                </h5>
+                                <div class="card-description" style="min-height: 13rem;">
+                                    <canvas id="chart3" class="ct-chart ct-perfect-fourth" width="228" height="150"></canvas>
+                                </div>
+                                <hr>
+                                <div class="card-footer">
+                                    <div class="author">
+                                        <img src="{{mock.clientArray[2].photo}}" alt="..." class="avatar img-raised">
+                                        <span>{{mock.clientArray[2].user}}</span>
+                                    </div>
+                                    <div class="stats" style="font-size: 14px;">
+                                        {{mock.clientArray[2].state}}
+                                        <div *ngIf="mock.clientArray[2].state !== mock.IDLE" class='uil-reload-css reload-small'>
+                                            <div></div>
+                                        </div>
+                                        <i *ngIf="mock.clientArray[2].state === mock.IDLE" class="fa fa-clock-o" aria-hidden="true"></i>
                                     </div>
                                 </div>
                             </div>

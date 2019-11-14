@@ -1,4 +1,5 @@
 import { Component, OnInit, ElementRef } from '@angular/core';
+import { BackendMockService } from 'app/backend-mock.service';
 import { Location, LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { Router } from '@angular/router';
 
@@ -11,7 +12,7 @@ export class NavbarComponent implements OnInit {
     private toggleButton: any;
     private sidebarVisible: boolean;
 
-    constructor(public location: Location, private element : ElementRef, public router: Router) {
+    constructor(public mock: BackendMockService, public location: Location, private element : ElementRef, public router: Router) {
         this.sidebarVisible = false;
     }
 
