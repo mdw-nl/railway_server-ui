@@ -1,279 +1,176 @@
-<div class="section section-blog">
-    <div class="container">
-        <!-- <div class="title h1">
-            Client Status
-        </div> -->
-        <div class="row">
-            <!-- <div *ngFor="let client of mock.clientArray"> -->
-            <div class="col-md-4" *ngFor="let client of mock.clientArray">
-                <div class="card card-blog">
-                    <div class="card-body">
-                        <h6 class="card-category text-success text-right">{{client.status}}</h6>
-                        <h5 class="card-title">
-                            <a href="javascript:void(0)">{{client.id}}</a>
-                        </h5>
-                        <div class="card-description" style="min-height: 9rem;">
-                            Client Info
-                            <div class="col-4"></div>
-                            <ul>
-                                <li> ip-address: {{client.ip}}</li>
-                                <li> mapped data:
-                                    <ul>
-                                        <li *ngFor="let variable of client.mappedVariables">{{variable}}</li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </div>
-                        <hr>
-                        <div class="card-footer">
-                            <div class="author">
-                                <a href="javascript:void(0)">
-                                    <img src="{{client.photo}}" alt="..." class="avatar img-raised">
-                                    <span>{{client.user}}</span>
-                                </a>
-                            </div>
-                            <div class="stats">
-                                <i class="fa fa-clock-o" aria-hidden="true"></i> {{client.state}}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-4">
-                <div class="card card-plain">
-                    Select Input
-
-                    <div class="form-check-radio">
-                        <label class="form-check-label">
-                            <input class="form-check-input" type="radio" name="inputRad" id="inputRad1" value="age"
-                            (change)="onInputChange($event)" [(ngModel)]="selectedInput" checked>
-                            Age
-                            <span class="form-check-sign"></span>
-                        </label>
-                    </div>
-                    <div class="form-check-radio">
-                        <label class="form-check-label">
-                            <input class="form-check-input" type="radio" name="inputRad" id="inputRad2" value="gender"
-                            (change)="onInputChange($event)" [(ngModel)]="selectedInput">
-                            Gender
-                            <span class="form-check-sign"></span>
-                        </label>
-                    </div>
-                    <div class="form-check-radio">
-                        <label class="form-check-label">
-                            <input class="form-check-input" type="radio" name="inputRad" id="inputRad3" value="treatment"
-                            (change)="onInputChange($event)" [(ngModel)]="selectedInput">
-                            Treatment
-                            <span class="form-check-sign"></span>
-                        </label>
-                    </div>
-
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card card-blog">
-                    <div class="card-body">
-                        <h6 class="card-category text-success text-right">Online</h6>
-                        <h5 class="card-title">
-                            <a href="javascript:void(0)">Server</a>
-                        </h5>
-                        <div class="card-description text-center">
-                            <button (click)="run()" class="btn btn-move-left btn-round mr-1"><i class="nc-icon nc-app"></i> Run</button>
-                            <br><br><div>Result: {{computationResult}}</div>
-                        </div>                
-                        <div class="card-footer">
-                            <div class="author">
-                                <a href="javascript:void(0)">
-                                    <img src="./assets/img/Logo_zondertekst.png" alt="..." class="avatar img-raised">
-                                    <span>Admin</span>
-                                </a>
-                            </div>
-                            <div class="stats">
-                                <i class="fa fa-clock-o" aria-hidden="true"></i> {{serverStatus}}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card card-plain">
-                        Select Computation
-
-                        <div class="form-check-radio">
-                            <label class="form-check-label">
-                                <input class="form-check-input" type="radio" name="calcRad" id="calcRad1" value="mean"
-                                (change)="onInputChange($event)" [(ngModel)]="selectedAnalysis" checked>
-                                Mean
-                                <span class="form-check-sign"></span>
-                            </label>
-                        </div>
-                        <div class="form-check-radio">
-                            <label class="form-check-label">
-                                <input class="form-check-input" type="radio" name="calcRad" id="calcRad2" value="distribution"
-                                (change)="onInputChange($event)" [(ngModel)]="selectedAnalysis" >
-                                Distribution
-                                <span class="form-check-sign"></span>
-                            </label>
-                        </div>
-                        <div class="form-check-radio">
-                            <label class="form-check-label">
-                                <input class="form-check-input" type="radio" name="calcRad" id="calcRad3" value="linear-regression"
-                                (change)="onInputChange($event)" [(ngModel)]="selectedAnalysis" >
-                                Linear regression
-                                <span class="form-check-sign"></span>
-                            </label>
-                        </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div><!-- section -->
-<div class="section section-blog">
-    <div class="container">
-        <div class="title h1">
-            Select Data
-        </div>
-    </div>
-</div>
-<div class="section section-blog">
-    <div class="container">
-        <div class="title h1">
-            Select Analysis
-        </div>
-    </div>
-</div>
-<div class="section">
-    <div class="container tim-container">
-        <div class="row">
-            <div class="col-md-8 ml-auto mr-auto">
-                <h4 class="title text-center">
-                    Data client A
-                </h4>
-                <div class="table-responsive">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th class="text-center">{{ tableData1.headerRow[0] }}</th>
-                                <th>{{ tableData1.headerRow[1] }}</th>
-                                <th>{{ tableData1.headerRow[2] }}</th>
-                                <th class="text-right">{{ tableData1.headerRow[4] }}</th>
-                                <th class="text-right">{{ tableData1.headerRow[5] }}</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr *ngFor="let row of tableData1.dataRows">
-                                <td class="text-center">{{row[0]}}</td>
-                                <td>{{row[1]}}</td>
-                                <td>{{row[2]}}</td>
-                                <td class="text-right">&euro; {{row[4]}}</td>
-                                <td class="td-actions text-right">
-                                    <button type="button" ngbTooltip="View Profile"
-                                        class="btn btn-info btn-link btn-sm">
-                                        <i class="fa fa-user"></i>
-                                    </button>
-                                    <button type="button" ngbTooltip="Edit Profile"
-                                        class="btn btn-success btn-link btn-sm">
-                                        <i class="fa fa-edit"></i>
-                                    </button>
-                                    <button type="button" ngbTooltip="Remove" class="btn btn-danger btn-link btn-sm">
-                                        <i class="fa fa-times"></i>
-                                    </button>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 <div class="section section-gray">
-    <div class="container tim-container">
+    <div class="container">
+        <br>
         <div class="row">
-            <div class="col-md-8 ml-auto mr-auto">
-                <h4 class="title text-center">
-                    Data client B
-                </h4>
-                <div class="table-responsive">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th class="text-center">{{ tableData1.headerRow[0] }}</th>
-                                <th>{{ tableData1.headerRow[1] }}</th>
-                                <th>{{ tableData1.headerRow[2] }}</th>
-                                <th class="text-right">{{ tableData1.headerRow[4] }}</th>
-                                <th class="text-right">{{ tableData1.headerRow[5] }}</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr *ngFor="let row of tableData1.dataRows">
-                                <td class="text-center">{{row[0]}}</td>
-                                <td>{{row[1]}}</td>
-                                <td>{{row[2]}}</td>
-                                <td class="text-right">&euro; {{row[4]}}</td>
-                                <td class="td-actions text-right">
-                                    <button type="button" ngbTooltip="View Profile"
-                                        class="btn btn-info btn-link btn-sm">
-                                        <i class="fa fa-user"></i>
-                                    </button>
-                                    <button type="button" ngbTooltip="Edit Profile"
-                                        class="btn btn-success btn-link btn-sm">
-                                        <i class="fa fa-edit"></i>
-                                    </button>
-                                    <button type="button" ngbTooltip="Remove" class="btn btn-danger btn-link btn-sm">
-                                        <i class="fa fa-times"></i>
-                                    </button>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+            <div class="col-4">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card card-blog">
+                            <div class="card-body">
+                                <h5 class="card-title"> Select Dataset </h5>
+                                <div class="form-check-radio">
+                                    <label class="form-check-label">
+                                        <input class="form-check-input" type="radio" name="inputRad" id="inputRad1"
+                                            value="age" (change)="onInputChange($event)" [(ngModel)]="selectedInput"
+                                            checked>
+                                        Age
+                                        <span class="form-check-sign"></span>
+                                    </label>
+                                </div>
+                                <div class="form-check-radio">
+                                    <label class="form-check-label">
+                                        <input class="form-check-input" type="radio" name="inputRad" id="inputRad2"
+                                            value="gender" (change)="onInputChange($event)" [(ngModel)]="selectedInput">
+                                        Gender
+                                        <span class="form-check-sign"></span>
+                                    </label>
+                                </div>
+                                <div class="form-check-radio">
+                                    <label class="form-check-label">
+                                        <input class="form-check-input" type="radio" name="inputRad" id="inputRad3"
+                                            value="treatment" (change)="onInputChange($event)"
+                                            [(ngModel)]="selectedInput">
+                                        Treatment
+                                        <span class="form-check-sign"></span>
+                                    </label>
+                                </div>
+                                <br>
+                                <hr>
+                                <h5 class="card-title"> Select Input </h5>
+                                <div class="form-check-radio">
+                                    <label class="form-check-label">
+                                        <input class="form-check-input" type="radio" name="inputRad" id="inputRad1"
+                                            value="age" (change)="onInputChange($event)" [(ngModel)]="selectedInput"
+                                            checked>
+                                        Age
+                                        <span class="form-check-sign"></span>
+                                    </label>
+                                </div>
+                                <div class="form-check-radio">
+                                    <label class="form-check-label">
+                                        <input class="form-check-input" type="radio" name="inputRad" id="inputRad2"
+                                            value="gender" (change)="onInputChange($event)" [(ngModel)]="selectedInput">
+                                        Gender
+                                        <span class="form-check-sign"></span>
+                                    </label>
+                                </div>
+                                <div class="form-check-radio">
+                                    <label class="form-check-label">
+                                        <input class="form-check-input" type="radio" name="inputRad" id="inputRad3"
+                                            value="treatment" (change)="onInputChange($event)"
+                                            [(ngModel)]="selectedInput">
+                                        Treatment
+                                        <span class="form-check-sign"></span>
+                                    </label>
+                                </div>
+                                <br>
+                                <hr>
+                                <h5 class="card-title"> Select computation </h5>
+                                <div class="form-check-radio">
+                                    <label class="form-check-label">
+                                        <input class="form-check-input" type="radio" name="calcRad" id="calcRad1"
+                                            value="mean" (change)="onInputChange($event)" [(ngModel)]="selectedAnalysis"
+                                            checked>
+                                        Mean
+                                        <span class="form-check-sign"></span>
+                                    </label>
+                                </div>
+                                <div class="form-check-radio">
+                                    <label class="form-check-label">
+                                        <input class="form-check-input" type="radio" name="calcRad" id="calcRad2"
+                                            value="distribution" (change)="onInputChange($event)"
+                                            [(ngModel)]="selectedAnalysis">
+                                        Distribution
+                                        <span class="form-check-sign"></span>
+                                    </label>
+                                </div>
+                                <div class="form-check-radio">
+                                    <label class="form-check-label">
+                                        <input class="form-check-input" type="radio" name="calcRad" id="calcRad3"
+                                            value="linear-regression" (change)="onInputChange($event)"
+                                            [(ngModel)]="selectedAnalysis">
+                                        Linear regression
+                                        <span class="form-check-sign"></span>
+                                    </label>
+                                </div>
+                                <br>
+                                <hr>
+                                <br>
+                                <div class="text-center">
+                                        <button (click)="run()" class="btn btn-move-left btn-round mr-1"><i class="nc-icon nc-app"></i>
+                                            Run</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
-</div>
-<div class="section">
-    <div class="container tim-container">
-        <div class="row">
-            <div class="col-md-8 ml-auto mr-auto">
-                <h4 class="title text-center">
-                    Data client C
-                </h4>
-                <div class="table-responsive">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th class="text-center">{{ tableData1.headerRow[0] }}</th>
-                                <th>{{ tableData1.headerRow[1] }}</th>
-                                <th>{{ tableData1.headerRow[2] }}</th>
-                                <th class="text-right">{{ tableData1.headerRow[4] }}</th>
-                                <th class="text-right">{{ tableData1.headerRow[5] }}</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr *ngFor="let row of tableData1.dataRows">
-                                <td class="text-center">{{row[0]}}</td>
-                                <td>{{row[1]}}</td>
-                                <td>{{row[2]}}</td>
-                                <td class="text-right">&euro; {{row[4]}}</td>
-                                <td class="td-actions text-right">
-                                    <button type="button" ngbTooltip="View Profile"
-                                        class="btn btn-info btn-link btn-sm">
-                                        <i class="fa fa-user"></i>
-                                    </button>
-                                    <button type="button" ngbTooltip="Edit Profile"
-                                        class="btn btn-success btn-link btn-sm">
-                                        <i class="fa fa-edit"></i>
-                                    </button>
-                                    <button type="button" ngbTooltip="Remove" class="btn btn-danger btn-link btn-sm">
-                                        <i class="fa fa-times"></i>
-                                    </button>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+            <div class="col-8">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="card card-blog">
+                            <div class="card-body">
+                                <h6 class="card-category text-success text-right">Online</h6>
+                                <h5 class="card-title"> Server </h5>
+                                <div class="card-description text-center" style="min-height: 9rem;">
+                                </div>
+                                <hr>
+                                <div class="card-footer">
+                                    <div class="author">
+                                        <a href="javascript:void(0)">
+                                            <img src="./assets/img/Logo_zondertekst.png" alt="..."
+                                                class="avatar img-raised">
+                                            <span>Admin</span>
+                                        </a>
+                                    </div>
+                                    <div class="stats" style="font-size: 14px;">
+                                        {{serverStatus}}
+                                        <div *ngIf="serverStatus !== IDLE" class='uil-reload-css reload-small'>
+                                            <div></div>
+                                        </div>
+                                        <i *ngIf="serverStatus === IDLE" class="fa fa-clock-o" aria-hidden="true"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6" *ngFor="let client of mock.clientArray">
+                        <div class="card card-blog">
+                            <div class="card-body">
+                                <h6 class="card-category text-success text-right">{{client.status}}</h6>
+                                <h5 class="card-title">
+                                    <a href="javascript:void(0)">Client - {{client.id}}</a>
+                                </h5>
+                                <div class="card-description" style="min-height: 9rem;">
+                                    Client Info
+                                    <div class="col-4"></div>
+                                    <ul>
+                                        <li> ip-address: {{client.ip}}</li>
+                                        <li> mapped data:
+                                            <ul>
+                                                <li *ngFor="let variable of client.mappedVariables">{{variable}}
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <hr>
+                                <div class="card-footer">
+                                    <div class="author">
+                                        <img src="{{client.photo}}" alt="..." class="avatar img-raised">
+                                        <span>{{client.user}}</span>
+                                    </div>
+                                    <div class="stats" style="font-size: 14px;">
+                                        {{client.state}}
+                                        <div *ngIf="client.state !== IDLE" class='uil-reload-css reload-small'>
+                                            <div></div>
+                                        </div>
+                                        <i *ngIf="client.state === IDLE" class="fa fa-clock-o" aria-hidden="true"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

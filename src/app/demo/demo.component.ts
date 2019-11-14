@@ -19,6 +19,7 @@ export class DemoComponent implements OnInit {
   selectedAnalysis: String = 'mean';
   computationResult: String = '';
   serverStatus: String = 'idle';
+  IDLE: String = 'idle';
 
   constructor( public mock: BackendMockService) {
   }

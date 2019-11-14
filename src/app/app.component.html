@@ -1,5 +1,8 @@
 <div *ngIf="router.url !== '/login'">
-    <app-navbar></app-navbar>
+    <app-navbar ></app-navbar>
+</div>
+<div *ngIf="router.url === '/login'">
+    <app-navbar [hidden]="true"></app-navbar>
 </div>
 
 <router-outlet></router-outlet>

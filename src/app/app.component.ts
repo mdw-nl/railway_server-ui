@@ -90,10 +90,10 @@ export class AppComponent implements OnInit {
                     _locationExamples = _locationExamples.split('/')[2];
                     if (number > 150 || window.pageYOffset > 150) {
                         // add logic
-                        navbar.classList.remove('navbar-transparent');
+                        console.log(this.router.url)
                     } else if (_locationExamples !== 'addproduct' && _locationExamples !== 'blogposts' && _locationExamples !== 'discover' && _locationExamples !== 'contactus' && _locationExamples !== 'login' && _locationExamples !== 'register' && _locationExamples !== 'search' && this.location.path() !== '/nucleoicons') {
                         // remove logic
-                        navbar.classList.add('navbar-transparent');
+                        console.log(this.router.url)
                     }
                 }
             });
