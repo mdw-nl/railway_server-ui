@@ -14,6 +14,7 @@ import { UserComponent } from './user/user.component';
 import { DemoComponent } from './demo/demo.component';
 import { ResultsComponent } from './results/results.component';
 import { LoginComponent } from './login/login.component';
+import { Results2Component } from './results2/results2.component';
 
 @NgModule({
     declarations: [
@@ -24,7 +25,8 @@ import { LoginComponent } from './login/login.component';
         UserComponent,
         DemoComponent,
         ResultsComponent,
-        LoginComponent
+        LoginComponent,
+        Results2Component
     ],
     imports: [
         BrowserAnimationsModule,
