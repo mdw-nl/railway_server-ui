@@ -40,7 +40,7 @@ export class DemoComponent implements OnInit {
     // this.drawCharts();
   }
 
-  onComputationChange () {
+  onComputationChange(value) {
     this.mock.computation = this.selectedAnalysis;
     if (this.selectedAnalysis === 'mean') {
       this.selectedInput = 'age'
