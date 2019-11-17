@@ -9,7 +9,7 @@
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-10">
-                                        <h5 class="card-title"> Select Dataset </h5>
+                                        <h3 class="card-title"> Select Dataset </h3>
                                     </div>
                                     <!-- info button for demo -->
                                     <div class="col-2">
@@ -49,7 +49,7 @@
                                 <div class="form-check-radio disabled">
                                     <label class="form-check-label">
                                         <input class="form-check-input" type="radio" name="dataRad" id="dataRad2"
-                                            value="oncology" (change)="onInputChange($event)" [(ngModel)]="selectedDataset">
+                                            value="oncology" [(ngModel)]="selectedDataset" disabled>
                                         Oncology
                                         <span class="form-check-sign"></span>
                                     </label>
@@ -57,8 +57,7 @@
                                 <div class="form-check-radio disabled">
                                     <label class="form-check-label">
                                         <input class="form-check-input" type="radio" name="dataRad" id="dataRad3"
-                                            value="cardiology" (change)="onInputChange($event)"
-                                            [(ngModel)]="selectedDataset">
+                                            value="cardiology" [(ngModel)]="selectedDataset" disabled>
                                         Cardiology
                                         <span class="form-check-sign"></span>
                                     </label>
@@ -66,57 +65,57 @@
                                 <div class="form-check-radio disabled">
                                     <label class="form-check-label">
                                         <input class="form-check-input" type="radio" name="dataRad" id="dataRad4"
-                                            value="neurology" (change)="onInputChange($event)"
-                                            [(ngModel)]="selectedDataset">
+                                            value="neurology" [(ngModel)]="selectedDataset" disabled>
                                         Neurology
                                         <span class="form-check-sign"></span>
                                     </label>
                                 </div>
                                 <br>
                                 <hr>
-                                <h5 class="card-title"> Select Input </h5>
-                                <div class="form-check-radio">
-                                    <label class="form-check-label">
-                                        <input class="form-check-input" type="radio" name="inputRad" id="inputRad1"
-                                            value="age" (change)="onInputChange($event)" [(ngModel)]="selectedInput"
-                                            checked>
-                                        Age
-                                        <span class="form-check-sign"></span>
-                                    </label>
-                                </div>
-                                <div class="form-check-radio">
+                                <h3 class="card-title"> Select Input </h3>
+                                <div class="form-check-radio disabled">
                                     <label class="form-check-label">
                                         <input class="form-check-input" type="radio" name="inputRad" id="inputRad2"
-                                            value="gender" (change)="onInputChange($event)" [(ngModel)]="selectedInput">
+                                            value="gender" (change)="onInputChange($event)" [(ngModel)]="selectedInput"
+                                            disabled>
                                         Gender
                                         <span class="form-check-sign"></span>
                                     </label>
                                 </div>
-                                <div class="form-check-radio">
+                                <div class="form-check-radio disabled">
+                                    <label class="form-check-label">
+                                        <input class="form-check-input" type="radio" name="inputRad" id="inputRad1"
+                                            value="age" (change)="onInputChange($event)" [(ngModel)]="selectedInput"
+                                            checked disabled>
+                                        Age
+                                        <span class="form-check-sign"></span>
+                                    </label>
+                                </div>
+                                <div class="form-check-radio disabled">
                                     <label class="form-check-label">
                                         <input class="form-check-input" type="radio" name="inputRad" id="inputRad3"
                                             value="treatment" (change)="onInputChange($event)"
-                                            [(ngModel)]="selectedInput">
+                                            [(ngModel)]="selectedInput" disabled>
                                         Treatment
                                         <span class="form-check-sign"></span>
                                     </label>
                                 </div>
                                 <br>
                                 <hr>
-                                <h5 class="card-title"> Select computation </h5>
+                                <h3 class="card-title"> Select computation </h3>
                                 <div class="form-check-radio">
                                     <label class="form-check-label">
                                         <input class="form-check-input" type="radio" name="calcRad" id="calcRad1"
-                                            value="mean" (change)="onInputChange($event)" [(ngModel)]="selectedAnalysis"
-                                            checked>
+                                            value="mean" (change)="onComputationChange($event)"
+                                            [(ngModel)]="selectedAnalysis" checked>
                                         Mean
                                         <span class="form-check-sign"></span>
                                     </label>
                                 </div>
-                                <div class="form-check-radio disabled">
+                                <div class="form-check-radio">
                                     <label class="form-check-label">
                                         <input class="form-check-input" type="radio" name="calcRad" id="calcRad2"
-                                            value="distribution" (change)="onInputChange($event)"
+                                            value="distribution" (change)="onComputationChange($event)"
                                             [(ngModel)]="selectedAnalysis">
                                         Distribution
                                         <span class="form-check-sign"></span>
@@ -125,8 +124,8 @@
                                 <div class="form-check-radio disabled">
                                     <label class="form-check-label">
                                         <input class="form-check-input" type="radio" name="calcRad" id="calcRad3"
-                                            value="linear-regression" (change)="onInputChange($event)"
-                                            [(ngModel)]="selectedAnalysis">
+                                            value="linear-regression" (change)="onComputationChange($event)"
+                                            [(ngModel)]="selectedAnalysis" disabled>
                                         Linear regression
                                         <span class="form-check-sign"></span>
                                     </label>
@@ -134,13 +133,48 @@
                                 <br>
                                 <hr>
                                 <br>
+                                <div *ngIf="selectedAnalysis === REGRESSION">
+                                    <h3 class="card-title"> Select wanted outcome </h3>
+                                    <div class="form-check-radio">
+                                        <label class="form-check-label">
+                                            <input class="form-check-input" type="radio" name="outputRad"
+                                                id="outputRad1" value="surv2y" (change)="onOutcomeChange($event)"
+                                                [(ngModel)]="selectedOutput" checked>
+                                            Survival 2 years
+                                            <span class="form-check-sign"></span>
+                                        </label>
+                                    </div>
+                                    <div class="form-check-radio disabled">
+                                        <label class="form-check-label">
+                                            <input class="form-check-input" type="radio" name="outputRad"
+                                                id="outputRad2" value="surv5y" (change)="onOutcomeChange($event)"
+                                                [(ngModel)]="selectedOutput" disabled>
+                                            Survival 5 years
+                                            <span class="form-check-sign"></span>
+                                        </label>
+                                    </div>
+                                    <div class="form-check-radio disabled">
+                                        <label class="form-check-label">
+                                            <input class="form-check-input" type="radio" name="outputRad"
+                                                id="outputRad3" value="side-effect" (change)="onOutcomeChange($event)"
+                                                [(ngModel)]="selectedOutput" disabled>
+                                            Treatment side-effects
+                                            <span class="form-check-sign"></span>
+                                        </label>
+                                    </div>
+                                    <br>
+                                    <hr>
+                                    <br>
+                                </div>
                                 <div class="text-center">
-                                    <button *ngIf="mock.processingDone === false" (click)="mock.startFakeRun()" class="btn btn-move-left btn-round mr-1"><i
-                                            class="nc-icon nc-app"></i>
+                                    <button *ngIf="mock.modelProcessed === false" (click)="startFakeRun()"
+                                        class="btn btn-move-left btn-round mr-1"><i class="nc-icon nc-app"></i>
                                         Run</button>
 
-                                        <button *ngIf="mock.processingDone === true" (click)="goToResults()" class="btn btn-round mr-1">
+                                    <button *ngIf="mock.modelProcessed === true" (click)="goToResults()"
+                                        class="btn btn-round mr-1">
                                         Show results</button>
+                                    <!-- second button for debugging -->
                                 </div>
                             </div>
                         </div>
@@ -153,9 +187,30 @@
                         <div class="card card-blog">
                             <div class="card-body">
                                 <h6 class="card-category text-success text-right">Online</h6>
-                                <h5 class="card-title"> Server </h5>
-                                <div class="card-description text-center" style="min-height: 13rem;">
-                                    
+                                <h3 class="card-title"> Server </h3>
+                                <div class="card-description text-center " style="min-height: 13rem;">
+                                    <div style="min-height: 10rem;">
+                                        <canvas id="chart-distribution" class="ct-chart ct-perfect-fourth" width="1"
+                                            height="1"></canvas>
+                                    </div>
+                                    <h5 class="row">
+                                        <div class="col-6 text-left">
+                                            <!-- <div *ngIf="mock.meanOutput === 0" style="color: white">tmp<br></div> -->
+                                            <div class="legend" *ngIf="mock.distributionOutput !== 0">
+                                                <i class="fa fa-circle text-info"></i> Male
+                                                <br></div>
+                                            <div *ngIf="mock.distributionOutput === 0">Mean<br></div>
+                                            Samples
+                                        </div>
+                                        <div class="col-6 text-right">
+                                            <!-- <div *ngIf="mock.meanOutput === 0" style="color: white">tmp<br></div> -->
+                                            <div class="legend" *ngIf="mock.distributionOutput !== 0">
+                                                    <i class="fa fa-circle"></i> Female
+                                                    <br></div>
+                                            <div *ngIf="mock.distributionOutput === 0">{{mock.meanOutput}}<br></div>
+                                            {{mock.sampleSize}}
+                                        </div>
+                                    </h5>
                                 </div>
                                 <hr>
                                 <div class="card-footer">
@@ -168,10 +223,12 @@
                                     </div>
                                     <div class="stats" style="font-size: 14px;">
                                         {{mock.serverStatus}}
-                                        <div *ngIf="mock.serverStatus !== mock.IDLE" class='uil-reload-css reload-small'>
+                                        <div *ngIf="mock.serverStatus !== mock.IDLE"
+                                            class='uil-reload-css reload-small'>
                                             <div></div>
                                         </div>
-                                        <i *ngIf="mock.serverStatus === mock.IDLE" class="fa fa-clock-o" aria-hidden="true"></i>
+                                        <i *ngIf="mock.serverStatus === mock.IDLE" class="fa fa-clock-o"
+                                            aria-hidden="true"></i>
                                     </div>
                                 </div>
                             </div>
@@ -181,11 +238,12 @@
                         <div class="card card-blog">
                             <div class="card-body">
                                 <h6 class="card-category text-success text-right">{{mock.clientArray[0].status}}</h6>
-                                <h5 class="card-title">
+                                <h3 class="card-title">
                                     <a>Client - {{mock.clientArray[0].id}}</a>
-                                </h5>
+                                </h3>
                                 <div class="card-description" style="min-height:13rem;">
-                                    <canvas id="chart1" class="ct-chart ct-perfect-fourth" width="228" height="150"></canvas>
+                                    <canvas id="chart1" class="ct-chart ct-perfect-fourth" width="228"
+                                        height="150"></canvas>
                                 </div>
                                 <hr>
                                 <div class="card-footer">
@@ -195,10 +253,12 @@
                                     </div>
                                     <div class="stats" style="font-size: 14px;">
                                         {{mock.clientArray[0].state}}
-                                        <div *ngIf="mock.clientArray[0].state !== mock.IDLE" class='uil-reload-css reload-small'>
+                                        <div *ngIf="mock.clientArray[0].state !== mock.IDLE"
+                                            class='uil-reload-css reload-small'>
                                             <div></div>
                                         </div>
-                                        <i *ngIf="mock.clientArray[0].state === mock.IDLE" class="fa fa-clock-o" aria-hidden="true"></i>
+                                        <i *ngIf="mock.clientArray[0].state === mock.IDLE" class="fa fa-clock-o"
+                                            aria-hidden="true"></i>
                                     </div>
                                 </div>
                             </div>
@@ -208,11 +268,12 @@
                         <div class="card card-blog">
                             <div class="card-body">
                                 <h6 class="card-category text-success text-right">{{mock.clientArray[1].status}}</h6>
-                                <h5 class="card-title">
+                                <h3 class="card-title">
                                     <a>Client - {{mock.clientArray[1].id}}</a>
-                                </h5>
+                                </h3>
                                 <div class="card-description" style="min-height: 13rem;">
-                                    <canvas id="chart2" class="ct-chart ct-perfect-fourth" width="228" height="150"></canvas>
+                                    <canvas id="chart2" class="ct-chart ct-perfect-fourth" width="228"
+                                        height="150"></canvas>
                                 </div>
                                 <hr>
                                 <div class="card-footer">
@@ -222,10 +283,12 @@
                                     </div>
                                     <div class="stats" style="font-size: 14px;">
                                         {{mock.clientArray[1].state}}
-                                        <div *ngIf="mock.clientArray[1].state !== mock.IDLE" class='uil-reload-css reload-small'>
+                                        <div *ngIf="mock.clientArray[1].state !== mock.IDLE"
+                                            class='uil-reload-css reload-small'>
                                             <div></div>
                                         </div>
-                                        <i *ngIf="mock.clientArray[1].state === mock.IDLE" class="fa fa-clock-o" aria-hidden="true"></i>
+                                        <i *ngIf="mock.clientArray[1].state === mock.IDLE" class="fa fa-clock-o"
+                                            aria-hidden="true"></i>
                                     </div>
                                 </div>
                             </div>
@@ -235,11 +298,12 @@
                         <div class="card card-blog">
                             <div class="card-body">
                                 <h6 class="card-category text-success text-right">{{mock.clientArray[2].status}}</h6>
-                                <h5 class="card-title">
+                                <h3 class="card-title">
                                     <a>Client - {{mock.clientArray[2].id}}</a>
-                                </h5>
+                                </h3>
                                 <div class="card-description" style="min-height: 13rem;">
-                                    <canvas id="chart3" class="ct-chart ct-perfect-fourth" width="228" height="150"></canvas>
+                                    <canvas id="chart3" class="ct-chart ct-perfect-fourth" width="228"
+                                        height="150"></canvas>
                                 </div>
                                 <hr>
                                 <div class="card-footer">
@@ -249,10 +313,12 @@
                                     </div>
                                     <div class="stats" style="font-size: 14px;">
                                         {{mock.clientArray[2].state}}
-                                        <div *ngIf="mock.clientArray[2].state !== mock.IDLE" class='uil-reload-css reload-small'>
+                                        <div *ngIf="mock.clientArray[2].state !== mock.IDLE"
+                                            class='uil-reload-css reload-small'>
                                             <div></div>
                                         </div>
-                                        <i *ngIf="mock.clientArray[2].state === mock.IDLE" class="fa fa-clock-o" aria-hidden="true"></i>
+                                        <i *ngIf="mock.clientArray[2].state === mock.IDLE" class="fa fa-clock-o"
+                                            aria-hidden="true"></i>
                                     </div>
                                 </div>
                             </div>

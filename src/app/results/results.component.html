@@ -1,50 +1,61 @@
-<div class="section">
+<div class="section section-gray">
     <div class="container tim-container">
+        <br>
         <div class="row">
-            <div class="col-md-4 ml-auto mr-auto">
-                <h4 class="title text-center">
-                    Computations (select)
-                </h4>
-                <div class="table-responsive">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th class="text-center">{{ tableData1.headerRow[0] }}</th>
-                                <th>{{ tableData1.headerRow[1] }}</th>
-                                <th>{{ tableData1.headerRow[2] }}</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr *ngFor="let row of tableData1.dataRows">
-                                <td class="text-center">{{row[0]}}</td>
-                                <td>{{row[1]}}</td>
-                                <td>{{row[2]}}</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+            
+            <div class="col-md-2">
+                Tekst data
             </div>
-            <div class="col-md-8 ml-auto mr-auto">
-                <h4 class="title text-center">
-                    Computation Results
-                </h4>
-                <div class="table-responsive">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th class="text-center">{{ tableData1.headerRow[0] }}</th>
-                                <th>{{ tableData1.headerRow[1] }}</th>
-                                <th>{{ tableData1.headerRow[2] }}</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr *ngFor="let row of tableData1.dataRows">
-                                <td class="text-center">{{row[0]}}</td>
-                                <td>{{row[1]}}</td>
-                                <td>{{row[2]}}</td>
-                            </tr>
-                        </tbody>
-                    </table>
+
+            <div class="col-md-10">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="card card-pricing">
+                            <!-- <div class="card-header">
+                        <h5 class="card-title">24 Hours Performance</h5>
+                        <p class="card-category">Line Chart</p>
+                    </div> -->
+                            <div class="card-body">
+                                <canvas id="activeUsers"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card card-pricing">
+                            <!-- <div class="card-header">
+                  <h5 class="card-title">NASDAQ: AAPL</h5>
+                  <p class="card-category">Line Chart with Points</p>
+                </div> -->
+                            <div class="card-body">
+                                <canvas id="chartViews"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="card card-pricing">
+                            <!-- <div class="card-header">
+                        <h5 class="card-title">24 Hours Performance</h5>
+                        <p class="card-category">Line Chart</p>
+                    </div> -->
+                            <div class="card-body">
+                                <canvas id="auc"
+                                    style="height: 300px !important; width: 300px !important; margin-right: auto; margin-left: auto;"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card card-pricing">
+                            <!-- <div class="card-header">
+                  <h5 class="card-title">NASDAQ: AAPL</h5>
+                  <p class="card-category">Line Chart with Points</p>
+                </div> -->
+                            <div class="card-body">
+                                <canvas id="piechart"></canvas>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

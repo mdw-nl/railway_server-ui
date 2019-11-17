@@ -30,6 +30,7 @@
     "angular2-multiselect-dropdown": "4.2.7",
     "bootstrap": "4.3.1",
     "chart.js": "^2.9.2",
+    "chartjs-plugin-labels": "^1.1.0",
     "core-js": "3.1.4",
     "font-awesome": "4.7.0",
     "human-readable-ids": "^1.0.4",

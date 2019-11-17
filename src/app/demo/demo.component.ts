@@ -20,9 +20,10 @@ export class DemoComponent implements OnInit {
   selectedDataset: String = 'all';
   selectedInput: String = 'age';
   selectedAnalysis: String = 'mean';
+  selectedOutput: String = 'surv2y';
+  REGRESSION: String = 'linear-regression';
+  showResults = false;
   closeResult: string;
-  canvas
-  ctx
 
   constructor(
     public mock: BackendMockService,
@@ -36,14 +37,50 @@ export class DemoComponent implements OnInit {
   }
 
   onInputChange(value) {
-    console.log(' Value is : ', value);
-    console.log(' Input variable : ', this.selectedInput);
-    console.log(' Input variable : ', this.selectedAnalysis);
+    // this.drawCharts();
+  }
+
+  onComputationChange () {
+    this.mock.computation = this.selectedAnalysis;
+    if (this.selectedAnalysis === 'mean') {
+      this.selectedInput = 'age'
+    }
+    if (this.selectedAnalysis === 'distribution') {
+      this.selectedInput = 'gender'
+    }
+    if (this.selectedAnalysis === 'linear-regression') {
+      this.selectedInput = 'treatment'
+    }
     this.drawCharts();
   }
 
-  goToResults(){
-    this.router.navigate(['/about'])
+  onOutcomeChange () {
+    //placeholder
+  }
+
+  goToResults() {
+    if (this.selectedAnalysis === 'linear-regression'){
+      this.router.navigate(['/resultsModel'])
+    }
+  }
+
+  startFakeRun() {
+    this.mock.meanOutput = 0;
+    this.mock.distributionOutput = 0;
+    let canvas:any;
+    canvas = document.getElementById('chart-distribution');
+    let ctx =  canvas.getContext('2d');
+    if (this.selectedAnalysis === 'distribution'){
+      canvas.width = 288
+      canvas.height = 150
+    } else {
+      ctx.clearRect(0, 0, 288, 150);
+      canvas.style.width = 1
+      canvas.style.height = 1
+      console.log(JSON.stringify(canvas))
+    }
+    console.log(this.selectedAnalysis)
+    this.mock.startFakeRun(canvas)
   }
 
   // ---------- MODEL STUFF ------------------------
@@ -102,6 +139,7 @@ export class DemoComponent implements OnInit {
       thirdClient.usable,
       thirdClient.total
     );
+    this.mock.sampleSize = firstClient.usable + secondClient.usable + thirdClient.usable
   }
 
   initCharts() {
@@ -155,13 +193,11 @@ export class DemoComponent implements OnInit {
     value: number,
     total: number
   ) {
-    this.canvas = document.getElementById(chartName);
-    console.log(JSON.stringify(this.canvas));
-    this.ctx = this.canvas.getContext('2d');
-    //let sum = data.reduce((a, b) => a + b, 0)
+    let canvas:any = document.getElementById(chartName);
+    let ctx = canvas.getContext('2d');
     let restPie = total - value;
 
-    let myChart = new Chart(this.ctx, {
+    let myChart = new Chart(ctx, {
       type: 'pie',
       data: {
         labels: [1, 2, 3],
@@ -179,10 +215,10 @@ export class DemoComponent implements OnInit {
       options: {
         elements: {
           center: {
-            text: String(Math.round((value / total) * 100)) + '%',
+            text: String(value) + ' (' + String(Math.round((value / total) * 100)) + '%' + ')',
             color: '#66615c', // Default is #000000
             fontStyle: 'Arial', // Default is Arial
-            sidePadding: 60 // Defualt is 20 (as a percentage)
+            sidePadding: 30 // Defualt is 20 (as a percentage)
           }
         },
         cutoutPercentage: 90,
@@ -192,6 +228,14 @@ export class DemoComponent implements OnInit {
 
         tooltips: {
           enabled: false
+        },
+
+        plugins: {
+          labels: {
+            render: 'percentage',
+            fontSize: 0,
+            showActualPercentages: true
+          }
         },
 
         scales: {
