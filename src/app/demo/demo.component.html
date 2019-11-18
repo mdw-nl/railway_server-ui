@@ -37,7 +37,7 @@
                                         <!-- end info button ->
                                     </div>
                                 </div> -->
-                                <h3 class="card-title"> Select Dataset </h3>
+                                <!-- <h3 class="card-title"> Select Dataset </h3>
                                 <div class="form-check-radio">
                                     <label class="form-check-label">
                                         <input class="form-check-input" type="radio" name="dataRad" id="dataRad1"
@@ -72,32 +72,31 @@
                                     </label>
                                 </div>
                                 <br>
-                                <hr>
+                                <hr> -->
                                 <h3 class="card-title"> Select Input </h3>
-                                <div class="form-check-radio disabled">
-                                    <label class="form-check-label">
-                                        <input class="form-check-input" type="radio" name="inputRad" id="inputRad2"
-                                            value="gender" (change)="onInputChange($event)" [(ngModel)]="selectedInput"
-                                            disabled>
-                                        Gender
-                                        <span class="form-check-sign"></span>
-                                    </label>
-                                </div>
-                                <div class="form-check-radio disabled">
+                                <div class="form-check-radio">
                                     <label class="form-check-label">
                                         <input class="form-check-input" type="radio" name="inputRad" id="inputRad1"
                                             value="age" (change)="onInputChange($event)" [(ngModel)]="selectedInput"
-                                            checked disabled>
+                                            checked>
                                         Age
                                         <span class="form-check-sign"></span>
                                     </label>
                                 </div>
-                                <div class="form-check-radio disabled">
+                                <div class="form-check-radio">
+                                    <label class="form-check-label">
+                                        <input class="form-check-input" type="radio" name="inputRad" id="inputRad2"
+                                            value="gender" (change)="onInputChange($event)" [(ngModel)]="selectedInput">
+                                        Gender
+                                        <span class="form-check-sign"></span>
+                                    </label>
+                                </div>
+                                <div class="form-check-radio">
                                     <label class="form-check-label">
                                         <input class="form-check-input" type="radio" name="inputRad" id="inputRad3"
                                             value="treatment" (change)="onInputChange($event)"
-                                            [(ngModel)]="selectedInput" disabled>
-                                        Treatment
+                                            [(ngModel)]="selectedInput">
+                                        Treatment Dose
                                         <span class="form-check-sign"></span>
                                     </label>
                                 </div>
@@ -109,25 +108,25 @@
                                         <input class="form-check-input" type="radio" name="calcRad" id="calcRad1"
                                             value="mean" (change)="onComputationChange($event)"
                                             [(ngModel)]="selectedAnalysis" checked>
-                                        Mean
+                                        Statistics
                                         <span class="form-check-sign"></span>
                                     </label>
                                 </div>
                                 <div class="form-check-radio">
                                     <label class="form-check-label">
-                                        <input class="form-check-input" type="radio" name="calcRad" id="calcRad2"
-                                            value="distribution" (change)="onComputationChange($event)"
+                                        <input class="form-check-input" type="radio" name="calcRad" id="calcRad3"
+                                            value="linear-regression" (change)="onComputationChange($event)"
                                             [(ngModel)]="selectedAnalysis">
-                                        Distribution
+                                        Linear Regression
                                         <span class="form-check-sign"></span>
                                     </label>
                                 </div>
                                 <div class="form-check-radio disabled">
                                     <label class="form-check-label">
                                         <input class="form-check-input" type="radio" name="calcRad" id="calcRad3"
-                                            value="linear-regression" (change)="onComputationChange($event)"
+                                            value="svm" (change)="onComputationChange($event)"
                                             [(ngModel)]="selectedAnalysis" disabled>
-                                        Linear regression
+                                        Support Vector Machine
                                         <span class="form-check-sign"></span>
                                     </label>
                                 </div>
@@ -195,11 +194,15 @@
                                             height="1"></canvas>
                                     </div>
                                     <h5 class="text-left">
-                                        <div class="legend" *ngIf="mock.distributionOutput !== 0">
+                                        <div class="legend" *ngIf="selectedInput === GENDER">
                                             <i class="fa fa-circle text-info"></i> Male 
                                             <i class="fa fa-circle"></i> Female
                                         </div>
-                                        <div *ngIf="mock.distributionOutput === 0">Mean: {{mock.meanOutput}}</div>
+                                        <div class="legend" *ngIf="selectedInput === TREATMENT">
+                                            <i class="fa fa-circle text-info"></i> Upper 
+                                            <i class="fa fa-circle text-danger"></i> Lower bound
+                                        </div>
+                                        <div *ngIf="selectedInput === AGE">Mean: {{mock.meanOutput}}</div>
                                         Total number of samples: {{mock.sampleSize}}
                                     </h5>
                                 </div>

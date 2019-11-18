@@ -36,6 +36,7 @@ export class BackendMockService {
   user = 'user';
   userPhoto: String = './assets/img/default.svg';
   computation: String = 'mean';
+  variable: String = 'age'; 
   serverStatus: String = 'idle';
   IDLE: String = 'idle';
   modelProcessed = false;
@@ -153,14 +154,21 @@ export class BackendMockService {
     this.serverStatus = 'assigning tasks';
     console.log(this.computation);
     if (this.computation === 'mean') {
-      this.playOutMeanScenario();
+      if (this.variable === 'age') {
+        this.playStatsAgeScenario(canvas);
+      } else if(this.variable === 'gender') {
+        this.playStatsGenderScenario(canvas)
+      } else {
+        this.playStatsTreatmentScenario(canvas);
+      }
+      
     }
-    if (this.computation === 'distribution') {
-      this.playOutDistributionScenario(canvas);
+    if (this.computation === 'linear-regression') {
+      //this.playOutDistributionScenario(canvas);
     }
   }
 
-  playOutMeanScenario() {
+  playStatsAgeScenario(canvas:any) {
     (async () => {
       this.clientArray[0].state = 'receiving application';
       await this.delay(this.randomIntFromInterval(200, 800));
@@ -171,7 +179,7 @@ export class BackendMockService {
       this.clientArray[0].state = 'computing';
       this.clientArray[1].state = 'computing';
       this.clientArray[2].state = 'computing';
-      await this.delay(this.randomIntFromInterval(4000, 10000));
+      await this.delay(this.randomIntFromInterval(400, 2000));
       this.clientArray[0].state = 'sending results';
       await this.delay(this.randomIntFromInterval(200, 800));
       this.clientArray[1].state = 'sending results';
@@ -182,13 +190,14 @@ export class BackendMockService {
       await this.delay(this.randomIntFromInterval(200, 800));
       this.clientArray[2].state = 'idle';
       this.serverStatus = 'processing results';
-      await this.delay(this.randomIntFromInterval(1000, 4000));
+      await this.delay(this.randomIntFromInterval(300, 3000));
       this.serverStatus = 'idle';
-      this.meanOutput = 63.5 //this.randomIntFromInterval(500, 1000) / 10;
+      this.meanOutput = 62.4;
+      this.drawBars(canvas);
     })();
   }
 
-  playOutDistributionScenario(canvas: any) {
+  playStatsGenderScenario(canvas: any) {
     this.distributionOutput = 1;
     (async () => {
       this.clientArray[2].state = 'receiving application';
@@ -200,7 +209,7 @@ export class BackendMockService {
       this.clientArray[1].state = 'computing';
       await this.delay(this.randomIntFromInterval(200, 800));
       this.clientArray[2].state = 'computing';
-      await this.delay(this.randomIntFromInterval(4000, 10000));
+      await this.delay(this.randomIntFromInterval(300, 1000));
       this.clientArray[0].state = 'computing';
       this.clientArray[1].state = 'sending results';
       this.clientArray[2].state = 'sending results';
@@ -212,9 +221,39 @@ export class BackendMockService {
       await this.delay(this.randomIntFromInterval(200, 800));
       this.clientArray[0].state = 'idle';
       this.serverStatus = 'processing results';
-      await this.delay(this.randomIntFromInterval(3000, 4000));
+      await this.delay(this.randomIntFromInterval(300, 1000));
       this.serverStatus = 'idle';
       this.drawPieChart(canvas);
+    })();
+  }
+
+  playStatsTreatmentScenario(canvas: any) {
+    this.distributionOutput = 1;
+    (async () => {
+      this.clientArray[1].state = 'receiving application';
+      this.clientArray[0].state = 'receiving application';
+      await this.delay(this.randomIntFromInterval(200, 800));
+      this.clientArray[2].state = 'receiving application';
+      await this.delay(this.randomIntFromInterval(1000, 2000));
+      this.serverStatus = 'waiting for clients';
+      this.clientArray[0].state = 'computing';
+      await this.delay(this.randomIntFromInterval(200, 800));
+      this.clientArray[1].state = 'computing';
+      await this.delay(this.randomIntFromInterval(400, 1500));
+      this.clientArray[2].state = 'computing';
+      this.clientArray[1].state = 'sending results';
+      this.clientArray[0].state = 'sending results';
+      await this.delay(this.randomIntFromInterval(200, 2000));
+      this.clientArray[1].state = 'idle';
+      this.clientArray[2].state = 'sending results';
+      await this.delay(this.randomIntFromInterval(200, 800));
+      this.clientArray[2].state = 'idle';
+      await this.delay(this.randomIntFromInterval(200, 800));
+      this.clientArray[0].state = 'idle';
+      this.serverStatus = 'processing results';
+      await this.delay(this.randomIntFromInterval(300, 1000));
+      this.serverStatus = 'idle';
+      this.drawLineChart(canvas);
     })();
   }
 
@@ -244,7 +283,7 @@ export class BackendMockService {
             pointHoverRadius: 0,
             backgroundColor: ['#9A9A9A', '#51bcda'],
             borderWidth: 0,
-            data: [542, 480]
+            data: [263, 737]
           }
         ]
       },
@@ -290,6 +329,175 @@ export class BackendMockService {
               },
               ticks: {
                 display: false
+              }
+            }
+          ]
+        }
+      }
+    });
+  }
+
+  drawBars(canvas:any) {
+    let ctx: any = canvas.getContext("2d");
+
+    let myChart = new Chart(ctx, {
+      type: "bar",
+      data: {
+        labels: [
+          '30', '40', '50', '60', '70', '80'
+        ],
+        datasets: [
+          {
+            label: "Data",
+            borderColor: "#51bcda",
+            fill: true,
+            backgroundColor: "#51bcda",
+            hoverBorderColor: "#51bcda",
+            borderWidth: 5,
+            data: [6,	12,	22,	32,	21,	8]
+          }
+        ]
+      },
+      options: {
+        plugins: {
+          labels: {
+            render: 'percentage',
+            fontSize: 0,
+            fontColor: '#fff',
+            showActualPercentages: true
+          }
+        },
+
+        tooltips: {
+          tooltipFillColor: "rgba(0,0,0,0.5)",
+          tooltipFontFamily:
+            "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif",
+          tooltipFontSize: 14,
+          tooltipFontStyle: "normal",
+          tooltipFontColor: "#fff",
+          tooltipTitleFontFamily:
+            "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif",
+          tooltipTitleFontSize: 14,
+          tooltipTitleFontStyle: "bold",
+          tooltipTitleFontColor: "#fff",
+          tooltipYPadding: 6,
+          tooltipXPadding: 6,
+          tooltipCaretSize: 8,
+          tooltipCornerRadius: 6,
+          tooltipXOffset: 10
+        },
+
+        legend: {
+          display: false
+        },
+        scales: {
+          yAxes: [
+            {
+              ticks: {
+                fontColor: "#9f9f9f",
+                fontStyle: "bold",
+                beginAtZero: true,
+                maxTicksLimit: 5,
+                padding: 20
+              },
+              gridLines: {
+                zeroLineColor: "transparent",
+                display: true,
+                drawBorder: false,
+                color: "#9f9f9f"
+              }
+            }
+          ],
+          xAxes: [
+            {
+              barPercentage: 0.4,
+              gridLines: {
+                zeroLineColor: "white",
+                display: false,
+
+                drawBorder: false,
+                color: "transparent"
+              },
+              ticks: {
+                padding: 20,
+                fontColor: "#9f9f9f",
+                fontStyle: "bold"
+              }
+            }
+          ]
+        }
+      }
+    });
+  }
+
+  drawLineChart(canvas:any) {
+    let ctx: any = canvas.getContext("2d");
+
+    let myChart = new Chart(ctx, {
+      type: "line",
+      data: {
+        labels: ['50','60','70','80','90','100','110', '120'],
+        datasets: [
+          {
+            label: "Active Users",
+            borderColor: "#51bcda",
+            // backgroundColor: "#6bd000",
+            pointRadius: 0,
+            pointHoverRadius: 0,
+            fill: false,
+            borderWidth: 3,
+            data: [100, 100, 100, 93, 50, 7, 0, 0]
+          }, {
+            label: "Active Users",
+            borderColor: "#f5593d",
+            // backgroundColor: "#6bd000",
+            pointRadius: 0,
+            pointHoverRadius: 0,
+            fill: false,
+            borderWidth: 3,
+            data: [100, 100, 93, 57, 7, 0, 0, 0]
+          }
+        ]
+      },
+      options: {
+        legend: {
+          display: false
+        },
+
+        tooltips: {
+          enabled: false
+        },
+
+        scales: {
+          yAxes: [
+            {
+              ticks: {
+                fontColor: "#9f9f9f",
+                beginAtZero: true,
+                maxTicksLimit: 5
+                //padding: 20
+              },
+              gridLines: {
+                drawBorder: true,
+                zeroLineColor: "transparent",
+                color: "rgba(0,0,0,0.3)",
+                display: true
+              }
+            }
+          ],
+
+          xAxes: [
+            {
+              barPercentage: 1,
+              gridLines: {
+                drawBorder: true,
+                color: "rgba(0,0,0,0.3)",
+                zeroLineColor: "transparent",
+                display: true
+              },
+              ticks: {
+                padding: 20,
+                fontColor: "#9f9f9f"
               }
             }
           ]

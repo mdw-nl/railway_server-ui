@@ -31,18 +31,7 @@ export class ResultsComponent implements OnInit {
     let myChart = new Chart(ctx, {
       type: "line",
       data: {
-        labels: [
-          "Jan",
-          "Feb",
-          "Mar",
-          "Apr",
-          "May",
-          "Jun",
-          "Jul",
-          "Aug",
-          "Sep",
-          "Oct"
-        ],
+        labels: ['0','10','20','30','40','50','60','70','80','90','100','110', '120'],
         datasets: [
           {
             label: "Active Users",
@@ -52,7 +41,16 @@ export class ResultsComponent implements OnInit {
             pointHoverRadius: 0,
             fill: false,
             borderWidth: 3,
-            data: [542, 480, 430, 550, 530, 453, 380, 434, 568, 610]
+            data: [100, 100, 100, 100, 100, 100, 100, 100, 93, 50, 7, 0, 0]
+          }, {
+            label: "Active Users",
+            borderColor: "#6bd098",
+            // backgroundColor: "#6bd000",
+            pointRadius: 0,
+            pointHoverRadius: 0,
+            fill: false,
+            borderWidth: 3,
+            data: [100, 100, 100, 100, 100, 100, 100, 93, 57, 7, 0, 0, 0]
           }
         ]
       },
@@ -70,14 +68,14 @@ export class ResultsComponent implements OnInit {
             {
               ticks: {
                 fontColor: "#9f9f9f",
-                beginAtZero: false,
+                beginAtZero: true,
                 maxTicksLimit: 5
                 //padding: 20
               },
               gridLines: {
-                drawBorder: false,
+                drawBorder: true,
                 zeroLineColor: "transparent",
-                color: "rgba(0,0,0,1)",
+                color: "rgba(0,0,0,0.3)",
                 display: true
               }
             }
@@ -85,10 +83,10 @@ export class ResultsComponent implements OnInit {
 
           xAxes: [
             {
-              barPercentage: 1.6,
+              barPercentage: 1,
               gridLines: {
-                drawBorder: false,
-                color: "rgba(0,0,0,1)",
+                drawBorder: true,
+                color: "rgba(0,0,0,0.3)",
                 zeroLineColor: "transparent",
                 display: true
               },
@@ -255,7 +253,7 @@ export class ResultsComponent implements OnInit {
               gridLines: {
                 drawBorder: false,
                 zeroLineColor: "transparent",
-                color: "rgba(0,0,0,1)",
+                color: "rgba(0,0,0,0.3)",
                 display: true
               }
             }
@@ -266,7 +264,7 @@ export class ResultsComponent implements OnInit {
               // barPercentage: 1.6,
               gridLines: {
                 drawBorder: false,
-                color: "rgba(0,0,0,1)",
+                color: "rgba(0,0,0,0.3)",
                 zeroLineColor: "transparent",
                 display: true
               },

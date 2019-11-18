@@ -21,7 +21,13 @@ export class DemoComponent implements OnInit {
   selectedInput: String = 'age';
   selectedAnalysis: String = 'mean';
   selectedOutput: String = 'surv2y';
+  STATISTICS: String = 'mean'
   REGRESSION: String = 'linear-regression';
+  
+  AGE:String = 'age';
+  GENDER:String = 'gender';
+  TREATMENT:String = 'treatment';
+
   showResults = false;
   closeResult: string;
 
@@ -37,21 +43,12 @@ export class DemoComponent implements OnInit {
   }
 
   onInputChange(value) {
-    // this.drawCharts();
+    this.mock.variable = this.selectedInput;
+    this.drawCharts();
   }
 
   onComputationChange(value) {
     this.mock.computation = this.selectedAnalysis;
-    if (this.selectedAnalysis === 'mean') {
-      this.selectedInput = 'age'
-    }
-    if (this.selectedAnalysis === 'distribution') {
-      this.selectedInput = 'gender'
-    }
-    if (this.selectedAnalysis === 'linear-regression') {
-      this.selectedInput = 'treatment'
-    }
-    this.drawCharts();
   }
 
   onOutcomeChange () {
@@ -70,15 +67,13 @@ export class DemoComponent implements OnInit {
     let canvas:any;
     canvas = document.getElementById('chart-distribution');
     let ctx =  canvas.getContext('2d');
-    if (this.selectedAnalysis === 'distribution'){
+    // if (this.selectedAnalysis === 'distribution'){
       canvas.width = 288
       canvas.height = 150
-    } else {
+    // } else {
       ctx.clearRect(0, 0, 288, 150);
-      canvas.style.width = 1
-      canvas.style.height = 1
-      console.log(JSON.stringify(canvas))
-    }
+      // console.log(JSON.stringify(canvas))
+    // }
     console.log(this.selectedAnalysis)
     this.mock.startFakeRun(canvas)
   }
