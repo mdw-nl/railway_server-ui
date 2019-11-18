@@ -5,20 +5,20 @@
             <div class="row align-items-center" style="min-height: 100vh;">
                 <div class="col-md-4 col-sm-6 ml-auto mr-auto">
                     <div class="card card-register" style="background: #ffffff">
-                        <br><br>
+                        <!-- <br><br> -->
                         <img class="img-fluidn" style="margin-right: 20px; margin-left: 40px;" width="200rem" src="./assets/img/railwaylogo.png"
-                        alt="">
-                        <!-- <form class="register-form">
-                            <label>Username</label>
+                        alt=""> <br>
+                        <form class="register-form">
+                            <label class="text-info" >Username</label>
                             <input [ngModelOptions]="{standalone: true}" [(ngModel)]="username" type="text" class="form-control" placeholder="Username" style="border: 1px solid #DDD !important;">
-                            <label>Password</label>
+                            <label class="text-info" >Password</label>
                             <input [ngModelOptions]="{standalone: true}" [(ngModel)]="password" type="text" class="form-control" placeholder="Password" style="border: 1px solid #DDD !important;">
                             <a (click)="login(username, password)" class="btn btn-block btn-round" style="color: #ffffff !important;">Login</a>
                             <br>
                             <div *ngIf="loginError === true" class="text text-danger text-center"> Incorrect username/password</div>
-                        </form> -->
-                        <br><br><br>
-                        <a (click)="start()" class="btn btn-block btn-round" style="color: #ffffff !important;">Start</a>
+                        </form>
+                        <!-- <br><br><br> -->
+                        <!-- <a (click)="start()" class="btn btn-block btn-round" style="color: #ffffff !important;">Login</a> -->
                     </div>
                 </div>
             </div>

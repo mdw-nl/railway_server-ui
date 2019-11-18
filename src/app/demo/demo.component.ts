@@ -23,7 +23,6 @@ export class DemoComponent implements OnInit {
   selectedOutput: String = 'surv2y';
   STATISTICS: String = 'mean'
   REGRESSION: String = 'linear-regression';
-  
   AGE:String = 'age';
   GENDER:String = 'gender';
   TREATMENT:String = 'treatment';
@@ -44,11 +43,27 @@ export class DemoComponent implements OnInit {
 
   onInputChange(value) {
     this.mock.variable = this.selectedInput;
+    this.clearCanvas();
     this.drawCharts();
+    if (this.selectedInput === 'age'){
+      this.mock.clientArray[0].cohortType = 'VALIDATION COHORT';
+      this.mock.clientArray[1].cohortType = 'VALIDATION COHORT';
+      this.mock.clientArray[2].cohortType = 'TRAINING COHORT';
+    } else if(this.selectedInput === 'gender'){
+      this.mock.clientArray[0].cohortType = 'VALIDATION COHORT';
+      this.mock.clientArray[1].cohortType = 'VALIDATION COHORT';
+      this.mock.clientArray[2].cohortType = 'TRAINING COHORT';
+    } else {
+      this.mock.clientArray[0].cohortType = 'VALIDATION COHORT';
+      this.mock.clientArray[1].cohortType = 'TRAINING COHORT';
+      this.mock.clientArray[2].cohortType = 'VALIDATION COHORT';
+    }
+
   }
 
   onComputationChange(value) {
     this.mock.computation = this.selectedAnalysis;
+    this.clearCanvas();
   }
 
   onOutcomeChange () {
@@ -62,20 +77,29 @@ export class DemoComponent implements OnInit {
   }
 
   startFakeRun() {
+    let canvas:any;
+    canvas = document.getElementById('chart-distribution');
+    canvas.width = 288
+    canvas.height = 150
+    this.clearCanvas();
+
+    console.log(this.selectedAnalysis)
+    this.mock.startFakeRun(canvas)
+  }
+
+  clearCanvas(){
     this.mock.meanOutput = 0;
     this.mock.distributionOutput = 0;
+    this.mock.slope = '-'
+    this.mock.intercept = '-'
+    this.mock.clientArray[0].auc = 0;
+    this.mock.clientArray[1].auc = 0;
+    this.mock.clientArray[2].auc = 0;
     let canvas:any;
     canvas = document.getElementById('chart-distribution');
     let ctx =  canvas.getContext('2d');
-    // if (this.selectedAnalysis === 'distribution'){
-      canvas.width = 288
-      canvas.height = 150
-    // } else {
-      ctx.clearRect(0, 0, 288, 150);
-      // console.log(JSON.stringify(canvas))
-    // }
-    console.log(this.selectedAnalysis)
-    this.mock.startFakeRun(canvas)
+    ctx.clearRect(0, 0, 512, 512);
+    ctx.beginPath();
   }
 
   // ---------- MODEL STUFF ------------------------
@@ -115,21 +139,21 @@ export class DemoComponent implements OnInit {
   drawCharts() {
     let firstClient = this.mock.clientArray[0].dataArray.find(clientData => clientData.variable === this.selectedInput)
     this.drawChart(
-      'chart1',
+      'client1',
       ['#6bd098', '#f4f3ef'],
       firstClient.usable,
       firstClient.total
     );
     let secondClient = this.mock.clientArray[1].dataArray.find(clientData => clientData.variable === this.selectedInput)
     this.drawChart(
-      'chart2',
+      'client2',
       ['#6bd098', '#f4f3ef'],
       secondClient.usable,
       secondClient.total
     );
     let thirdClient = this.mock.clientArray[2].dataArray.find(clientData => clientData.variable === this.selectedInput)
     this.drawChart(
-      'chart3',
+      'client3',
       ['#6bd098', '#f4f3ef'],
       thirdClient.usable,
       thirdClient.total
@@ -264,4 +288,6 @@ export class DemoComponent implements OnInit {
       }
     });
   }
+
+  
 }
