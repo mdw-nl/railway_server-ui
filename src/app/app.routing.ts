@@ -14,10 +14,10 @@ import { Results2Component } from './results2/results2.component';
 const routes: Routes = [
     { path: 'about',    component: HomeComponent },
     { path: 'user',     component: UserComponent },
-    { path: 'client',    component: AdminComponent },
+    // { path: 'client',    component: AdminComponent },
     { path: 'demo',     component: DemoComponent },
-    { path: 'resultsModel',  component: ResultsComponent },
-    { path: 'resultsDistribution',  component: Results2Component },
+    // { path: 'resultsModel',  component: ResultsComponent },
+    // { path: 'resultsDistribution',  component: Results2Component },
     { path: 'login',    component: LoginComponent},
     { path: '', redirectTo: 'login', pathMatch: 'full' }
 ];

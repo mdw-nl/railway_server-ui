@@ -37,7 +37,7 @@
                                         <!-- end info button ->
                                     </div>
                                 </div> -->
-                                <h3 class="card-title"> Select Dataset </h3>
+                                <!-- <h3 class="card-title"> Select Dataset </h3>
                                 <div class="form-check-radio">
                                     <label class="form-check-label">
                                         <input class="form-check-input" type="radio" name="dataRad" id="dataRad1"
@@ -72,32 +72,31 @@
                                     </label>
                                 </div>
                                 <br>
-                                <hr>
+                                <hr> -->
                                 <h3 class="card-title"> Select Input </h3>
-                                <div class="form-check-radio disabled">
-                                    <label class="form-check-label">
-                                        <input class="form-check-input" type="radio" name="inputRad" id="inputRad2"
-                                            value="gender" (change)="onInputChange($event)" [(ngModel)]="selectedInput"
-                                            disabled>
-                                        Gender
-                                        <span class="form-check-sign"></span>
-                                    </label>
-                                </div>
-                                <div class="form-check-radio disabled">
+                                <div class="form-check-radio">
                                     <label class="form-check-label">
                                         <input class="form-check-input" type="radio" name="inputRad" id="inputRad1"
                                             value="age" (change)="onInputChange($event)" [(ngModel)]="selectedInput"
-                                            checked disabled>
+                                            checked>
                                         Age
                                         <span class="form-check-sign"></span>
                                     </label>
                                 </div>
-                                <div class="form-check-radio disabled">
+                                <div class="form-check-radio">
+                                    <label class="form-check-label">
+                                        <input class="form-check-input" type="radio" name="inputRad" id="inputRad2"
+                                            value="gender" (change)="onInputChange($event)" [(ngModel)]="selectedInput">
+                                        Gender
+                                        <span class="form-check-sign"></span>
+                                    </label>
+                                </div>
+                                <div class="form-check-radio">
                                     <label class="form-check-label">
                                         <input class="form-check-input" type="radio" name="inputRad" id="inputRad3"
                                             value="treatment" (change)="onInputChange($event)"
-                                            [(ngModel)]="selectedInput" disabled>
-                                        Treatment
+                                            [(ngModel)]="selectedInput">
+                                        Treatment Dose
                                         <span class="form-check-sign"></span>
                                     </label>
                                 </div>
@@ -109,25 +108,25 @@
                                         <input class="form-check-input" type="radio" name="calcRad" id="calcRad1"
                                             value="mean" (change)="onComputationChange($event)"
                                             [(ngModel)]="selectedAnalysis" checked>
-                                        Mean
+                                        Statistics
                                         <span class="form-check-sign"></span>
                                     </label>
                                 </div>
                                 <div class="form-check-radio">
                                     <label class="form-check-label">
-                                        <input class="form-check-input" type="radio" name="calcRad" id="calcRad2"
-                                            value="distribution" (change)="onComputationChange($event)"
+                                        <input class="form-check-input" type="radio" name="calcRad" id="calcRad3"
+                                            value="linear-regression" (change)="onComputationChange($event)"
                                             [(ngModel)]="selectedAnalysis">
-                                        Distribution
+                                        Linear Regression
                                         <span class="form-check-sign"></span>
                                     </label>
                                 </div>
                                 <div class="form-check-radio disabled">
                                     <label class="form-check-label">
                                         <input class="form-check-input" type="radio" name="calcRad" id="calcRad3"
-                                            value="linear-regression" (change)="onComputationChange($event)"
+                                            value="svm" (change)="onComputationChange($event)"
                                             [(ngModel)]="selectedAnalysis" disabled>
-                                        Linear regression
+                                        Support Vector Machine
                                         <span class="form-check-sign"></span>
                                     </label>
                                 </div>
@@ -189,17 +188,25 @@
                             <div class="card-body">
                                 <h6 class="card-category text-success text-right">Online</h6>
                                 <h3 class="card-title"> Server </h3>
-                                <div class="card-description text-center " style="min-height: 13rem;">
-                                    <div style="min-height: 10rem;">
-                                        <canvas id="chart-distribution" class="ct-chart ct-perfect-fourth" width="1"
-                                            height="1"></canvas>
+                                <div class="card-description text-center " style="min-height: 14rem;">
+                                    <div style="min-height: 11rem;">
+                                        <canvas id="chart-distribution" class="ct-chart ct-perfect-fourth" width="288"
+                                            height="150"></canvas>
                                     </div>
-                                    <h5 class="text-left">
-                                        <div class="legend" *ngIf="mock.distributionOutput !== 0">
-                                            <i class="fa fa-circle text-info"></i> Male 
+                                    <h5 class="text-left" *ngIf="selectedAnalysis === STATISTICS">
+                                        <div class="legend" *ngIf="selectedInput === GENDER">
+                                            <i class="fa fa-circle text-info"></i> Male
                                             <i class="fa fa-circle"></i> Female
                                         </div>
-                                        <div *ngIf="mock.distributionOutput === 0">Mean: {{mock.meanOutput}}</div>
+                                        <div class="legend" *ngIf="selectedInput === TREATMENT">
+                                            <i class="fa fa-circle text-info"></i> Upper
+                                            <i class="fa fa-circle text-danger"></i> Lower bound
+                                        </div>
+                                        <div *ngIf="selectedInput === AGE">Mean: {{mock.meanOutput}}</div>
+                                        Total number of samples: {{mock.sampleSize}}
+                                    </h5>
+                                    <h5 class="text-left" *ngIf="selectedAnalysis === REGRESSION">
+                                        Slope: {{mock.slope}} Intercept: {{mock.intercept}} <br>
                                         Total number of samples: {{mock.sampleSize}}
                                     </h5>
                                 </div>
@@ -228,13 +235,23 @@
                     <div class="col-md-6">
                         <div class="card card-blog">
                             <div class="card-body">
-                                <h6 class="card-category text-success text-right">{{mock.clientArray[0].status}}</h6>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <h6 class="card-category text-info text-left" *ngIf="selectedAnalysis === REGRESSION">
+                                            {{mock.clientArray[0].cohortType}}</h6>
+                                    </div>
+                                    <div class="col-6">
+                                        <h6 class="card-category text-success text-right">{{mock.clientArray[0].status}}
+                                        </h6>
+                                    </div>
+                                </div>
                                 <h3 class="card-title">
                                     <a>{{mock.clientArray[0].id}}</a>
                                 </h3>
-                                <div class="card-description" style="min-height:13rem;">
-                                    <canvas id="chart1" class="ct-chart ct-perfect-fourth" width="228"
-                                        height="150"></canvas>
+                                <div class="card-description" style="min-height:14rem;">
+                                    <canvas id="client1" class="ct-chart ct-perfect-fourth" width="228"
+                                        height="150" style="height: 200px !important; width: 200px !important; margin-right: auto; margin-left: auto;"></canvas>
+                                    <div class="text-success text-center" *ngIf="mock.clientArray[0].auc > 0" style="font-size: 12pt;">AUC: {{mock.clientArray[0].auc}}</div>
                                 </div>
                                 <hr>
                                 <div class="card-footer">
@@ -258,13 +275,23 @@
                     <div class="col-md-6">
                         <div class="card card-blog">
                             <div class="card-body">
-                                <h6 class="card-category text-success text-right">{{mock.clientArray[1].status}}</h6>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <h6 class="card-category text-info text-left" *ngIf="selectedAnalysis === REGRESSION">
+                                            {{mock.clientArray[1].cohortType}}</h6>
+                                    </div>
+                                    <div class="col-6">
+                                        <h6 class="card-category text-success text-right">{{mock.clientArray[1].status}}
+                                        </h6>
+                                    </div>
+                                </div>
                                 <h3 class="card-title">
                                     <a>{{mock.clientArray[1].id}}</a>
                                 </h3>
-                                <div class="card-description" style="min-height: 13rem;">
-                                    <canvas id="chart2" class="ct-chart ct-perfect-fourth" width="228"
-                                        height="150"></canvas>
+                                <div class="card-description" style="min-height: 14rem;">
+                                    <canvas id="client2" class="ct-chart ct-perfect-fourth" width="228"
+                                    height="150" style="height: 200px !important; width: 200px !important; margin-right: auto; margin-left: auto;"></canvas>
+                                <div class="text-danger text-center" *ngIf="mock.clientArray[1].auc > 0" style="font-size: 12pt;">AUC: {{mock.clientArray[1].auc}}</div>
                                 </div>
                                 <hr>
                                 <div class="card-footer">
@@ -288,13 +315,23 @@
                     <div class="col-md-6">
                         <div class="card card-blog">
                             <div class="card-body">
-                                <h6 class="card-category text-success text-right">{{mock.clientArray[2].status}}</h6>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <h6 class="card-category text-info text-left" *ngIf="selectedAnalysis === REGRESSION">
+                                            {{mock.clientArray[2].cohortType}}</h6>
+                                    </div>
+                                    <div class="col-6">
+                                        <h6 class="card-category text-success text-right">{{mock.clientArray[2].status}}
+                                        </h6>
+                                    </div>
+                                </div>
                                 <h3 class="card-title">
                                     <a>{{mock.clientArray[2].id}}</a>
                                 </h3>
-                                <div class="card-description" style="min-height: 13rem;">
-                                    <canvas id="chart3" class="ct-chart ct-perfect-fourth" width="228"
-                                        height="150"></canvas>
+                                <div class="card-description" style="min-height: 14rem;">
+                                    <canvas id="client3" class="ct-chart ct-perfect-fourth" width="228"
+                                    height="150" style="height: 200px !important; width: 200px !important; margin-right: auto; margin-left: auto;"></canvas>
+                                <div class="text-info text-center" *ngIf="mock.clientArray[2].auc > 0" style="font-size: 12pt;">AUC: {{mock.clientArray[2].auc}}</div>
                                 </div>
                                 <hr>
                                 <div class="card-footer">
