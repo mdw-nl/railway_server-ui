@@ -53,7 +53,7 @@ export class BackendMockService {
 
   generateClients() {
     let ClientInfo1: ClientInfo = new ClientInfo();
-    ClientInfo1.id = 'A'; //"silly-goose-37";
+    ClientInfo1.id = 'MAASTRO'; //"silly-goose-37";
     ClientInfo1.status = 'online';
     ClientInfo1.state = 'idle';
     ClientInfo1.lastOnline = '1s';
@@ -82,7 +82,7 @@ export class BackendMockService {
     ClientInfo1.dataArray.push(treatment);
 
     let ClientInfo2: ClientInfo = new ClientInfo();
-    ClientInfo2.id = 'B'; //'quick-cobra-15';
+    ClientInfo2.id = 'MGH'; //'quick-cobra-15';
     ClientInfo2.status = 'online';
     ClientInfo2.state = 'idle';
     ClientInfo2.lastOnline = '5s';
@@ -111,7 +111,7 @@ export class BackendMockService {
     ClientInfo2.dataArray.push(treatment2);
 
     let ClientInfo3: ClientInfo = new ClientInfo();
-    ClientInfo3.id = 'C'; //'tricky-chicken-23';
+    ClientInfo3.id = 'The Christie'; //'tricky-chicken-23';
     ClientInfo3.status = 'online';
     ClientInfo3.state = 'idle';
     ClientInfo3.lastOnline = '3s';
