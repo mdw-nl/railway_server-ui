@@ -9,7 +9,7 @@ import { BackendMockService } from 'app/backend-mock.service';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  users = ['timl', 'timh', 'johan']
+  users = ['timl', 'timh', 'johan', 'andre']
   username: String;
   password: String;
   loginError = false;
@@ -25,6 +25,7 @@ export class LoginComponent implements OnInit {
     if (this.users.indexOf(username) > -1) {
       this.loginError = false;
       this.mock.user = username;
+      this.mock.userPhoto = './assets/img/' + username + '.svg'
       this.router.navigate(['/demo'])
     } else {
       this.loginError = true;
