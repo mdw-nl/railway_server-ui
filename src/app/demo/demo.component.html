@@ -7,11 +7,11 @@
                     <div class="col-12">
                         <div class="card card-blog">
                             <div class="card-body">
-                                <div class="row">
+                                <!-- <div class="row">    
                                     <div class="col-10">
                                         <h3 class="card-title"> Select Dataset </h3>
                                     </div>
-                                    <!-- info button for demo -->
+                                    <!-- info button for demo ->
                                     <div class="col-2">
                                         <div class="btn btn-just-icon text-info"
                                             style="background-color: white;  border: 0;">
@@ -34,9 +34,10 @@
                                                 </p>
                                             </div>
                                         </ng-template>
-                                        <!-- end info button -->
+                                        <!-- end info button ->
                                     </div>
-                                </div>
+                                </div> -->
+                                <h3 class="card-title"> Select Dataset </h3>
                                 <div class="form-check-radio">
                                     <label class="form-check-label">
                                         <input class="form-check-input" type="radio" name="dataRad" id="dataRad1"
@@ -193,23 +194,13 @@
                                         <canvas id="chart-distribution" class="ct-chart ct-perfect-fourth" width="1"
                                             height="1"></canvas>
                                     </div>
-                                    <h5 class="row">
-                                        <div class="col-6 text-left">
-                                            <!-- <div *ngIf="mock.meanOutput === 0" style="color: white">tmp<br></div> -->
-                                            <div class="legend" *ngIf="mock.distributionOutput !== 0">
-                                                <i class="fa fa-circle text-info"></i> Male
-                                                <br></div>
-                                            <div *ngIf="mock.distributionOutput === 0">Mean<br></div>
-                                            Samples
+                                    <h5 class="text-left">
+                                        <div class="legend" *ngIf="mock.distributionOutput !== 0">
+                                            <i class="fa fa-circle text-info"></i> Male 
+                                            <i class="fa fa-circle"></i> Female
                                         </div>
-                                        <div class="col-6 text-right">
-                                            <!-- <div *ngIf="mock.meanOutput === 0" style="color: white">tmp<br></div> -->
-                                            <div class="legend" *ngIf="mock.distributionOutput !== 0">
-                                                    <i class="fa fa-circle"></i> Female
-                                                    <br></div>
-                                            <div *ngIf="mock.distributionOutput === 0">{{mock.meanOutput}}<br></div>
-                                            {{mock.sampleSize}}
-                                        </div>
+                                        <div *ngIf="mock.distributionOutput === 0">Mean: {{mock.meanOutput}}</div>
+                                        Total number of samples: {{mock.sampleSize}}
                                     </h5>
                                 </div>
                                 <hr>

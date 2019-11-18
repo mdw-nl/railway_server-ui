@@ -1,21 +1,24 @@
 <div class="wrapper">
-    <div class="page-header" style="background-image: url('./assets/img/login.jpg');"> 
+    <div class="page-header" style="background-image: url('./assets/img/dark-clouds-daylight-grass-gravel-552501.jpg');"> 
         <div class="filter"></div>
         <div class="container">
             <div class="row align-items-center" style="min-height: 100vh;">
                 <div class="col-md-4 col-sm-6 ml-auto mr-auto">
-                    <div class="card card-register" style="background: #00aeef">
-                        <h3 class="card-title text-bold" style="color: #ffffff">Welcome</h3>
-                        <form class="register-form">
+                    <div class="card card-register" style="background: #ffffff">
+                        <br><br>
+                        <img class="img-fluidn" style="margin-right: 20px; margin-left: 40px;" width="200rem" src="./assets/img/railwaylogo.png"
+                        alt="">
+                        <!-- <form class="register-form">
                             <label>Username</label>
-                            <input [ngModelOptions]="{standalone: true}" [(ngModel)]="username" type="text" class="form-control no-border" placeholder="Username">
-
+                            <input [ngModelOptions]="{standalone: true}" [(ngModel)]="username" type="text" class="form-control" placeholder="Username" style="border: 1px solid #DDD !important;">
                             <label>Password</label>
-                            <input [ngModelOptions]="{standalone: true}" [(ngModel)]="password" type="text" class="form-control no-border" placeholder="Password">
-                            <a (click)="login(username, password)" class="btn btn-neutral btn-block btn-round" style="color: #66615B !important;">Login</a>
+                            <input [ngModelOptions]="{standalone: true}" [(ngModel)]="password" type="text" class="form-control" placeholder="Password" style="border: 1px solid #DDD !important;">
+                            <a (click)="login(username, password)" class="btn btn-block btn-round" style="color: #ffffff !important;">Login</a>
                             <br>
                             <div *ngIf="loginError === true" class="text text-danger text-center"> Incorrect username/password</div>
-                        </form>
+                        </form> -->
+                        <br><br><br>
+                        <a (click)="start()" class="btn btn-block btn-round" style="color: #ffffff !important;">Start</a>
                     </div>
                 </div>
             </div>

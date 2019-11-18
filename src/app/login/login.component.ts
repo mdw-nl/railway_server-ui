@@ -30,4 +30,8 @@ export class LoginComponent implements OnInit {
       this.loginError = true;
     }
   }
+
+  start() {
+    this.router.navigate(['/demo'])
+  }
 }
