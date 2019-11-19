@@ -346,7 +346,7 @@ export class BackendMockService {
       this.clientArray[2].state = 'sending results';
       await this.delay(this.randomIntFromInterval(200, 2000));
       this.clientArray[2].state = 'idle';
-      this.clientArray[2].auc = this.randomIntFromInterval(70, 80) / 100
+      this.clientArray[0].auc = this.randomIntFromInterval(80, 90) / 100
       this.drawAuc1();
       this.clientArray[0].state = 'sending results';
       await this.delay(this.randomIntFromInterval(200, 800));
